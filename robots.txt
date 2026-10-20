@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fr3rental.netlify.app/sitemap.xml
