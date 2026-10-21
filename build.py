@@ -28,11 +28,14 @@ SITEMAP_PAGES = [
 
 
 def load_content():
-    """content.json is grouped into sections for the editor; flatten it."""
-    with open(os.path.join(HERE, "content.json"), encoding="utf-8") as f:
-        grouped = json.load(f)
+    """Every file in content/ is one section of the editor. Merge them."""
+    folder = os.path.join(HERE, "content")
     flat = {}
-    for section in grouped.values():
+    for name in sorted(os.listdir(folder)):
+        if not name.endswith(".json"):
+            continue
+        with open(os.path.join(folder, name), encoding="utf-8") as f:
+            section = json.load(f)
         if isinstance(section, dict):
             flat.update(section)
     return flat

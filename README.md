@@ -12,7 +12,7 @@ Two things live in here:
 
 ## How it fits together
 
-All the words, prices and dates on the site live in one file: **`content.json`**.
+All the words, prices and dates on the site live in the **`content/`** folder - one file per section of the editor.
 
 The `templates/` folder holds the page layouts with blanks in them, like
 `{{home_headline}}`. `build.py` fills the blanks from `content.json` and writes
@@ -115,7 +115,7 @@ Any of that can be added later — it's the same pattern, just more fields.
 ## Files
 
 ```
-content.json      every word, price and date on the site — the editor writes this
+content/          every word, price and date on the site — the editor writes these
 templates/        page layouts with {{blanks}} in them
 build.py          fills the blanks, writes the finished pages
 admin/            the editor (config.yml says which repo and what the fields are)

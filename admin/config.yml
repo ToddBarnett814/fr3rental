@@ -8,536 +8,500 @@ public_folder: /assets/images
 site_url: https://fr3rental.netlify.app
 
 collections:
-  - name: content
+  - name: website
     label: "Website"
     files:
       - name: contact
         label: "Phone, email and footer"
-        file: content.json
+        file: content/contact.json
         fields:
-          - name: contact
-            label: "Phone, email and footer"
-            widget: object
-            fields:
-              - name: phone_display
-                label: "Phone number (as shown on the site)"
-                widget: string
-                hint: "Example: (661) 733-5757"
-                required: false
-              - name: phone_link
-                label: "Phone number for call/text buttons"
-                widget: string
-                hint: "Same number, no spaces, starts with +1. Example: +16617335757"
-                required: false
-              - name: email
-                label: "Email address"
-                widget: string
-                hint: "Where booking requests are sent"
-                required: false
-              - name: city
-                label: "City"
-                widget: string
-                required: false
-              - name: business_name
-                label: "Business name"
-                widget: string
-                hint: "Shown in the footer and in Google results"
-                required: false
-              - name: logo_name
-                label: "Name in the top-left logo"
-                widget: string
-                required: false
-              - name: logo_tagline
-                label: "Small line under the logo"
-                widget: string
-                required: false
-              - name: footer_blurb
-                label: "Footer paragraph"
-                widget: text
-                required: false
-              - name: footer_smallprint
-                label: "Footer small print"
-                widget: text
-                required: false
-              - name: contact_strip
-                label: "Green bar at the top of every page"
-                widget: string
-                required: false
+          - name: phone_display
+            label: "Phone number (as shown on the site)"
+            widget: string
+            hint: "Example: (661) 733-5757"
+            required: false
+          - name: phone_link
+            label: "Phone number for call/text buttons"
+            widget: string
+            hint: "Same number, no spaces, starts with +1. Example: +16617335757"
+            required: false
+          - name: email
+            label: "Email address"
+            widget: string
+            hint: "Where booking requests are sent"
+            required: false
+          - name: city
+            label: "City"
+            widget: string
+            required: false
+          - name: business_name
+            label: "Business name"
+            widget: string
+            hint: "Shown in the footer and in Google results"
+            required: false
+          - name: logo_name
+            label: "Name in the top-left logo"
+            widget: string
+            required: false
+          - name: logo_tagline
+            label: "Small line under the logo"
+            widget: string
+            required: false
+          - name: footer_blurb
+            label: "Footer paragraph"
+            widget: text
+            required: false
+          - name: footer_smallprint
+            label: "Footer small print"
+            widget: text
+            required: false
+          - name: contact_strip
+            label: "Green bar at the top of every page"
+            widget: string
+            required: false
       - name: home
         label: "Home page"
-        file: content.json
+        file: content/home.json
         fields:
-          - name: home
-            label: "Home page"
-            widget: object
-            fields:
-              - name: home_eyebrow
-                label: "Small line above the headline"
-                widget: string
-                required: false
-              - name: home_headline
-                label: "Headline"
-                widget: string
-                hint: "The big text on the first screen"
-                required: false
-              - name: home_intro
-                label: "Paragraph under the headline"
-                widget: text
-                required: false
-              - name: hero_image
-                label: "Background photo"
-                widget: image
-                required: false
-              - name: stat1_value
-                label: "Stat 1 - number"
-                widget: string
-                required: false
-              - name: stat1_label
-                label: "Stat 1 - label"
-                widget: string
-                required: false
-              - name: stat2_value
-                label: "Stat 2 - number"
-                widget: string
-                required: false
-              - name: stat2_label
-                label: "Stat 2 - label"
-                widget: string
-                required: false
-              - name: stat3_value
-                label: "Stat 3 - number"
-                widget: string
-                required: false
-              - name: stat3_label
-                label: "Stat 3 - label"
-                widget: string
-                required: false
-              - name: stat4_value
-                label: "Stat 4 - number"
-                widget: string
-                required: false
-              - name: stat4_label
-                label: "Stat 4 - label"
-                widget: string
-                required: false
-              - name: own_eyebrow
-                label: "'Ownership' section - small line"
-                widget: string
-                required: false
-              - name: own_heading
-                label: "'Ownership' section - heading"
-                widget: string
-                required: false
-              - name: own_para1
-                label: "'Ownership' - first paragraph"
-                widget: text
-                required: false
-              - name: own_para2
-                label: "'Ownership' - second paragraph"
-                widget: text
-                required: false
-              - name: own_point1
-                label: "'Ownership' - tick 1"
-                widget: string
-                required: false
-              - name: own_point2
-                label: "'Ownership' - tick 2"
-                widget: string
-                required: false
-              - name: own_point3
-                label: "'Ownership' - tick 3"
-                widget: string
-                required: false
-              - name: own_point4
-                label: "'Ownership' - tick 4"
-                widget: string
-                required: false
-              - name: own_image
-                label: "'Ownership' photo"
-                widget: image
-                required: false
-              - name: own_stamp_title
-                label: "Label on the photo - top line"
-                widget: string
-                required: false
-              - name: own_stamp_sub
-                label: "Label on the photo - bottom line"
-                widget: string
-                required: false
-              - name: cards_eyebrow
-                label: "Three cards - small line"
-                widget: string
-                required: false
-              - name: cards_heading
-                label: "Three cards - heading"
-                widget: string
-                required: false
-              - name: cards_intro
-                label: "Three cards - intro paragraph"
-                widget: text
-                required: false
-              - name: card1_title
-                label: "Card 1 - title"
-                widget: string
-                required: false
-              - name: card1_text
-                label: "Card 1 - text"
-                widget: text
-                required: false
-              - name: card1_image
-                label: "Card 1 - photo"
-                widget: image
-                required: false
-              - name: card2_title
-                label: "Card 2 - title"
-                widget: string
-                required: false
-              - name: card2_text
-                label: "Card 2 - text"
-                widget: text
-                required: false
-              - name: card2_image
-                label: "Card 2 - photo"
-                widget: image
-                required: false
-              - name: card3_title
-                label: "Card 3 - title"
-                widget: string
-                required: false
-              - name: card3_text
-                label: "Card 3 - text"
-                widget: text
-                required: false
-              - name: card3_image
-                label: "Card 3 - photo"
-                widget: image
-                required: false
-              - name: proc_heading
-                label: "'How the rental works' - heading"
-                widget: string
-                required: false
-              - name: proc1_title
-                label: "Step 1 - title"
-                widget: string
-                required: false
-              - name: proc1_text
-                label: "Step 1 - text"
-                widget: text
-                required: false
-              - name: proc2_title
-                label: "Step 2 - title"
-                widget: string
-                required: false
-              - name: proc2_text
-                label: "Step 2 - text"
-                widget: text
-                required: false
-              - name: proc3_title
-                label: "Step 3 - title"
-                widget: string
-                required: false
-              - name: proc3_text
-                label: "Step 3 - text"
-                widget: text
-                required: false
-              - name: proc4_title
-                label: "Step 4 - title"
-                widget: string
-                required: false
-              - name: proc4_text
-                label: "Step 4 - text"
-                widget: text
-                required: false
-              - name: proof_heading
-                label: "Reviews band - heading"
-                widget: string
-                required: false
-              - name: proof_text
-                label: "Reviews band - paragraph"
-                widget: text
-                required: false
-              - name: proof_note
-                label: "Reviews band - small line underneath"
-                widget: string
-                required: false
-              - name: proof1_value
-                label: "Review stat 1 - number"
-                widget: string
-                required: false
-              - name: proof1_label
-                label: "Review stat 1 - label"
-                widget: string
-                required: false
-              - name: proof2_value
-                label: "Review stat 2 - number"
-                widget: string
-                required: false
-              - name: proof2_label
-                label: "Review stat 2 - label"
-                widget: string
-                required: false
-              - name: proof3_value
-                label: "Review stat 3 - number"
-                widget: string
-                required: false
-              - name: proof3_label
-                label: "Review stat 3 - label"
-                widget: string
-                required: false
-              - name: proof4_value
-                label: "Review stat 4 - number"
-                widget: string
-                required: false
-              - name: proof4_label
-                label: "Review stat 4 - label"
-                widget: string
-                required: false
+          - name: home_eyebrow
+            label: "Small line above the headline"
+            widget: string
+            required: false
+          - name: home_headline
+            label: "Headline"
+            widget: string
+            hint: "The big text on the first screen"
+            required: false
+          - name: home_intro
+            label: "Paragraph under the headline"
+            widget: text
+            required: false
+          - name: hero_image
+            label: "Background photo"
+            widget: image
+            required: false
+          - name: stat1_value
+            label: "Stat 1 - number"
+            widget: string
+            required: false
+          - name: stat1_label
+            label: "Stat 1 - label"
+            widget: string
+            required: false
+          - name: stat2_value
+            label: "Stat 2 - number"
+            widget: string
+            required: false
+          - name: stat2_label
+            label: "Stat 2 - label"
+            widget: string
+            required: false
+          - name: stat3_value
+            label: "Stat 3 - number"
+            widget: string
+            required: false
+          - name: stat3_label
+            label: "Stat 3 - label"
+            widget: string
+            required: false
+          - name: stat4_value
+            label: "Stat 4 - number"
+            widget: string
+            required: false
+          - name: stat4_label
+            label: "Stat 4 - label"
+            widget: string
+            required: false
+          - name: own_eyebrow
+            label: "'Ownership' - small line"
+            widget: string
+            required: false
+          - name: own_heading
+            label: "'Ownership' - heading"
+            widget: string
+            required: false
+          - name: own_para1
+            label: "'Ownership' - first paragraph"
+            widget: text
+            required: false
+          - name: own_para2
+            label: "'Ownership' - second paragraph"
+            widget: text
+            required: false
+          - name: own_point1
+            label: "'Ownership' - tick 1"
+            widget: string
+            required: false
+          - name: own_point2
+            label: "'Ownership' - tick 2"
+            widget: string
+            required: false
+          - name: own_point3
+            label: "'Ownership' - tick 3"
+            widget: string
+            required: false
+          - name: own_point4
+            label: "'Ownership' - tick 4"
+            widget: string
+            required: false
+          - name: own_image
+            label: "'Ownership' photo"
+            widget: image
+            required: false
+          - name: own_stamp_title
+            label: "Label on the photo - top line"
+            widget: string
+            required: false
+          - name: own_stamp_sub
+            label: "Label on the photo - bottom line"
+            widget: string
+            required: false
+          - name: cards_eyebrow
+            label: "Three cards - small line"
+            widget: string
+            required: false
+          - name: cards_heading
+            label: "Three cards - heading"
+            widget: string
+            required: false
+          - name: cards_intro
+            label: "Three cards - intro paragraph"
+            widget: text
+            required: false
+          - name: card1_title
+            label: "Card 1 - title"
+            widget: string
+            required: false
+          - name: card1_text
+            label: "Card 1 - text"
+            widget: text
+            required: false
+          - name: card1_image
+            label: "Card 1 - photo"
+            widget: image
+            required: false
+          - name: card2_title
+            label: "Card 2 - title"
+            widget: string
+            required: false
+          - name: card2_text
+            label: "Card 2 - text"
+            widget: text
+            required: false
+          - name: card2_image
+            label: "Card 2 - photo"
+            widget: image
+            required: false
+          - name: card3_title
+            label: "Card 3 - title"
+            widget: string
+            required: false
+          - name: card3_text
+            label: "Card 3 - text"
+            widget: text
+            required: false
+          - name: card3_image
+            label: "Card 3 - photo"
+            widget: image
+            required: false
+          - name: proc_heading
+            label: "'How the rental works' - heading"
+            widget: string
+            required: false
+          - name: proc1_title
+            label: "Step 1 - title"
+            widget: string
+            required: false
+          - name: proc1_text
+            label: "Step 1 - text"
+            widget: text
+            required: false
+          - name: proc2_title
+            label: "Step 2 - title"
+            widget: string
+            required: false
+          - name: proc2_text
+            label: "Step 2 - text"
+            widget: text
+            required: false
+          - name: proc3_title
+            label: "Step 3 - title"
+            widget: string
+            required: false
+          - name: proc3_text
+            label: "Step 3 - text"
+            widget: text
+            required: false
+          - name: proc4_title
+            label: "Step 4 - title"
+            widget: string
+            required: false
+          - name: proc4_text
+            label: "Step 4 - text"
+            widget: text
+            required: false
+          - name: proof_heading
+            label: "Reviews band - heading"
+            widget: string
+            required: false
+          - name: proof_text
+            label: "Reviews band - paragraph"
+            widget: text
+            required: false
+          - name: proof_note
+            label: "Reviews band - small line underneath"
+            widget: string
+            required: false
+          - name: proof1_value
+            label: "Review stat 1 - number"
+            widget: string
+            required: false
+          - name: proof1_label
+            label: "Review stat 1 - label"
+            widget: string
+            required: false
+          - name: proof2_value
+            label: "Review stat 2 - number"
+            widget: string
+            required: false
+          - name: proof2_label
+            label: "Review stat 2 - label"
+            widget: string
+            required: false
+          - name: proof3_value
+            label: "Review stat 3 - number"
+            widget: string
+            required: false
+          - name: proof3_label
+            label: "Review stat 3 - label"
+            widget: string
+            required: false
+          - name: proof4_value
+            label: "Review stat 4 - number"
+            widget: string
+            required: false
+          - name: proof4_label
+            label: "Review stat 4 - label"
+            widget: string
+            required: false
       - name: rv
         label: "The RV page"
-        file: content.json
+        file: content/rv.json
         fields:
-          - name: rv
-            label: "The RV page"
-            widget: object
-            fields:
-              - name: rv_heading
-                label: "Page heading"
-                widget: string
-                required: false
-              - name: rv_intro
-                label: "Paragraph under the heading"
-                widget: text
-                required: false
-              - name: rv_spec_intro
-                label: "Spec sheet - intro paragraph"
-                widget: text
-                required: false
-              - name: rv_floorplan_text
-                label: "Floor plan - caption"
-                widget: text
-                required: false
-              - name: rv_equip_heading
-                label: "Equipment list - heading"
-                widget: string
-                required: false
-              - name: rv_equip_intro
-                label: "Equipment list - intro paragraph"
-                widget: text
-                required: false
+          - name: rv_heading
+            label: "Page heading"
+            widget: string
+            required: false
+          - name: rv_intro
+            label: "Paragraph under the heading"
+            widget: text
+            required: false
+          - name: rv_spec_intro
+            label: "Spec sheet - intro paragraph"
+            widget: text
+            required: false
+          - name: rv_floorplan_text
+            label: "Floor plan - caption"
+            widget: text
+            required: false
+          - name: rv_equip_heading
+            label: "Equipment list - heading"
+            widget: string
+            required: false
+          - name: rv_equip_intro
+            label: "Equipment list - intro paragraph"
+            widget: text
+            required: false
       - name: rates
         label: "Rates and fees"
-        file: content.json
+        file: content/rates.json
         fields:
-          - name: rates
-            label: "Rates and fees"
-            widget: object
+          - name: rate1_name
+            label: "Rate 1 - name"
+            widget: string
+            required: false
+          - name: rate1_price
+            label: "Rate 1 - price"
+            widget: string
+            hint: "Include the dollar sign"
+            required: false
+          - name: rate1_when
+            label: "Rate 1 - when it applies"
+            widget: string
+            required: false
+          - name: rate2_name
+            label: "Rate 2 - name"
+            widget: string
+            required: false
+          - name: rate2_price
+            label: "Rate 2 - price"
+            widget: string
+            required: false
+          - name: rate2_when
+            label: "Rate 2 - when it applies"
+            widget: string
+            required: false
+          - name: rate3_name
+            label: "Rate 3 - name"
+            widget: string
+            required: false
+          - name: rate3_price
+            label: "Rate 3 - price"
+            widget: string
+            required: false
+          - name: rate3_when
+            label: "Rate 3 - when it applies"
+            widget: string
+            required: false
+          - name: fee_cleaning_title
+            label: "Cleaning fee - title"
+            widget: string
+            required: false
+          - name: fee_cleaning_text
+            label: "Cleaning fee - note"
+            widget: string
+            required: false
+          - name: fee_deposit_title
+            label: "Deposit - title"
+            widget: string
+            required: false
+          - name: fee_deposit_text
+            label: "Deposit - note"
+            widget: string
+            required: false
+          - name: fee_mileage_title
+            label: "Mileage - title"
+            widget: string
+            required: false
+          - name: fee_pet_title
+            label: "Pets - title"
+            widget: string
+            required: false
+          - name: fee_pet_text
+            label: "Pets - note"
+            widget: string
+            required: false
+          - name: addons
+            label: "Add-ons"
+            widget: list
+            label_singular: "Add-on"
+            hint: "The optional extras list. Put a price in, or leave it as Ask."
             fields:
-              - name: rate1_name
-                label: "Rate 1 - name"
-                widget: string
-                required: false
-              - name: rate1_price
-                label: "Rate 1 - price"
-                widget: string
-                hint: "Include the dollar sign"
-                required: false
-              - name: rate1_when
-                label: "Rate 1 - when it applies"
-                widget: string
-                required: false
-              - name: rate2_name
-                label: "Rate 2 - name"
-                widget: string
-                required: false
-              - name: rate2_price
-                label: "Rate 2 - price"
-                widget: string
-                required: false
-              - name: rate2_when
-                label: "Rate 2 - when it applies"
-                widget: string
-                required: false
-              - name: rate3_name
-                label: "Rate 3 - name"
-                widget: string
-                required: false
-              - name: rate3_price
-                label: "Rate 3 - price"
-                widget: string
-                required: false
-              - name: rate3_when
-                label: "Rate 3 - when it applies"
-                widget: string
-                required: false
-              - name: fee_cleaning_title
-                label: "Cleaning fee - title"
-                widget: string
-                required: false
-              - name: fee_cleaning_text
-                label: "Cleaning fee - note"
-                widget: string
-                required: false
-              - name: fee_deposit_title
-                label: "Deposit - title"
-                widget: string
-                required: false
-              - name: fee_deposit_text
-                label: "Deposit - note"
-                widget: string
-                required: false
-              - name: fee_mileage_title
-                label: "Mileage - title"
-                widget: string
-                required: false
-              - name: fee_pet_title
-                label: "Pets - title"
-                widget: string
-                required: false
-              - name: fee_pet_text
-                label: "Pets - note"
-                widget: string
-                required: false
-              - name: addons
-                label: "Add-ons"
-                widget: list
-                label_singular: "Add-on"
-                hint: "The optional extras list. Put a price in, or leave it as Ask."
-                fields:
-                  - { name: name, label: "Add-on", widget: string }
-                  - { name: price, label: "Price", widget: string, hint: "e.g. $45, or Ask" }
+              - { name: name, label: "Add-on", widget: string }
+              - { name: price, label: "Price", widget: string, hint: "e.g. $45, or Ask" }
       - name: availability
         label: "Booked dates"
-        file: content.json
+        file: content/availability.json
         fields:
-          - name: availability
+          - name: booked_ranges
             label: "Booked dates"
-            widget: object
+            widget: list
+            label_singular: "Booked trip"
+            hint: "Add a row for every trip that is booked. These dates show as unavailable on the calendar."
             fields:
-              - name: booked_ranges
-                label: "Booked dates"
-                widget: list
-                label_singular: "Booked trip"
-                hint: "Add a row for every trip that is booked. These dates show as unavailable on the calendar."
-                fields:
-                  - { name: start, label: "First night booked", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
-                  - { name: end, label: "Last night booked", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { name: start, label: "First night booked", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { name: end, label: "Last night booked", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
       - name: book
         label: "Availability page and requirements"
-        file: content.json
+        file: content/book.json
         fields:
-          - name: book
-            label: "Availability page and requirements"
-            widget: object
-            fields:
-              - name: book_heading
-                label: "Page heading"
-                widget: string
-                required: false
-              - name: book_intro
-                label: "Paragraph under the heading"
-                widget: text
-                required: false
-              - name: book_side_heading
-                label: "'Request your dates' - heading"
-                widget: string
-                required: false
-              - name: book_side_text
-                label: "'Request your dates' - paragraph"
-                widget: text
-                required: false
-              - name: rules_heading
-                label: "Requirements - heading"
-                widget: string
-                required: false
-              - name: rule_driver
-                label: "Requirement - driver"
-                widget: text
-                required: false
-              - name: rule_insurance
-                label: "Requirement - insurance"
-                widget: text
-                required: false
-              - name: rule_smoking
-                label: "Requirement - smoking"
-                widget: text
-                required: false
-              - name: rule_pets
-                label: "Requirement - pets"
-                widget: text
-                required: false
-              - name: rule_generator
-                label: "Requirement - generator"
-                widget: text
-                required: false
-              - name: rule_return
-                label: "Requirement - return"
-                widget: text
-                required: false
+          - name: book_heading
+            label: "Page heading"
+            widget: string
+            required: false
+          - name: book_intro
+            label: "Paragraph under the heading"
+            widget: text
+            required: false
+          - name: book_side_heading
+            label: "'Request your dates' - heading"
+            widget: string
+            required: false
+          - name: book_side_text
+            label: "'Request your dates' - paragraph"
+            widget: text
+            required: false
+          - name: rules_heading
+            label: "Requirements - heading"
+            widget: string
+            required: false
+          - name: rule_driver
+            label: "Requirement - driver"
+            widget: text
+            required: false
+          - name: rule_insurance
+            label: "Requirement - insurance"
+            widget: text
+            required: false
+          - name: rule_smoking
+            label: "Requirement - smoking"
+            widget: text
+            required: false
+          - name: rule_pets
+            label: "Requirement - pets"
+            widget: text
+            required: false
+          - name: rule_generator
+            label: "Requirement - generator"
+            widget: text
+            required: false
+          - name: rule_return
+            label: "Requirement - return"
+            widget: text
+            required: false
       - name: contactpage
         label: "Contact page"
-        file: content.json
+        file: content/contactpage.json
         fields:
-          - name: contactpage
-            label: "Contact page"
-            widget: object
-            fields:
-              - name: contact_heading
-                label: "Page heading"
-                widget: string
-                required: false
-              - name: contact_intro
-                label: "Paragraph under the heading"
-                widget: text
-                required: false
-              - name: contact_side_text
-                label: "'Three ways to get in touch' - paragraph"
-                widget: text
-                required: false
+          - name: contact_heading
+            label: "Page heading"
+            widget: string
+            required: false
+          - name: contact_intro
+            label: "Paragraph under the heading"
+            widget: text
+            required: false
+          - name: contact_side_text
+            label: "'Three ways to get in touch' - paragraph"
+            widget: text
+            required: false
       - name: legal
         label: "Legal page"
-        file: content.json
+        file: content/legal.json
         fields:
-          - name: legal
-            label: "Legal page"
-            widget: object
-            fields:
-              - name: legal_terms_heading
-                label: "Section 1 - heading"
-                widget: string
-                required: false
-              - name: legal_terms
-                label: "Section 1 - rental terms"
-                widget: text
-                hint: "Leave a blank line between paragraphs."
-                required: false
-              - name: legal_cancellation_heading
-                label: "Section 2 - heading"
-                widget: string
-                required: false
-              - name: legal_cancellation
-                label: "Section 2 - cancellation policy"
-                widget: text
-                hint: "Leave a blank line between paragraphs."
-                required: false
-              - name: legal_privacy_heading
-                label: "Section 3 - heading"
-                widget: string
-                required: false
-              - name: legal_privacy
-                label: "Section 3 - privacy"
-                widget: text
-                hint: "Leave a blank line between paragraphs."
-                required: false
+          - name: legal_terms_heading
+            label: "Section 1 - heading"
+            widget: string
+            required: false
+          - name: legal_terms
+            label: "Section 1 - rental terms"
+            widget: text
+            hint: "Leave a blank line between paragraphs."
+            required: false
+          - name: legal_cancellation_heading
+            label: "Section 2 - heading"
+            widget: string
+            required: false
+          - name: legal_cancellation
+            label: "Section 2 - cancellation policy"
+            widget: text
+            hint: "Leave a blank line between paragraphs."
+            required: false
+          - name: legal_privacy_heading
+            label: "Section 3 - heading"
+            widget: string
+            required: false
+          - name: legal_privacy
+            label: "Section 3 - privacy"
+            widget: text
+            hint: "Leave a blank line between paragraphs."
+            required: false
       - name: advanced
         label: "Advanced"
-        file: content.json
+        file: content/advanced.json
         fields:
-          - name: advanced
-            label: "Advanced"
-            widget: object
-            fields:
-              - name: site_url
-                label: "Website address"
-                widget: string
-                hint: "Change this only if the domain changes"
-                required: false
+          - name: site_url
+            label: "Website address"
+            widget: string
+            hint: "Change this only if the domain changes"
+            required: false

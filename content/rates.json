@@ -1,0 +1,60 @@
+{
+  "rate1_name": "Weekday",
+  "rate1_price": "$225",
+  "rate1_when": "Sunday through Thursday",
+  "rate2_name": "Weekend",
+  "rate2_price": "$275",
+  "rate2_when": "Friday and Saturday",
+  "rate3_name": "Peak season",
+  "rate3_price": "$325",
+  "rate3_when": "June–August and major holidays",
+  "fee_cleaning_title": "$150 cleaning fee",
+  "fee_cleaning_text": "Flat, one time, every rental.",
+  "fee_deposit_title": "$500 deposit",
+  "fee_deposit_text": "Refundable, returned within 5 days of a clean return.",
+  "fee_mileage_title": "100 free miles / day",
+  "fee_pet_title": "Pet friendly &mdash; $125",
+  "fee_pet_text": "Dogs welcome. No cats. No smoking.",
+  "addons": [
+    {
+      "name": "RV-connected gas bbq grill",
+      "price": "Ask"
+    },
+    {
+      "name": "Tow option",
+      "price": "Ask"
+    },
+    {
+      "name": "Comfortable bedding",
+      "price": "Ask"
+    },
+    {
+      "name": "Bath towels",
+      "price": "Ask"
+    },
+    {
+      "name": "Cleaning supply pkg (the convenient, $saving one)",
+      "price": "Ask"
+    },
+    {
+      "name": "Lawn chairs and tables",
+      "price": "Ask"
+    },
+    {
+      "name": "EZups",
+      "price": "Ask"
+    },
+    {
+      "name": "64-qt ice chests",
+      "price": "Ask"
+    },
+    {
+      "name": "Inflatable foot pool",
+      "price": "Ask"
+    },
+    {
+      "name": "Delivery, setup &amp; pickup",
+      "price": "Quoted by distance"
+    }
+  ]
+}
