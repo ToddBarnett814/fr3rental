@@ -52,6 +52,19 @@ def derived(content):
         for r in rows
     )
 
+    # the same list, as tick boxes on the booking form
+    boxes = []
+    for r in rows:
+        name = r.get("name", "")
+        price = r.get("price", "")
+        tail = ' <span class="p">%s</span>' % price if price else ""
+        boxes.append(
+            '            <label><input type="checkbox" name="addons" value="%s">'
+            '<span>%s</span>%s</label>'
+            % (name.replace('"', "&quot;"), name, tail)
+        )
+    out["addons_checkboxes"] = "\n".join(boxes)
+
     for key in ("legal_terms", "legal_cancellation", "legal_privacy"):
         text = content.get(key, "")
         paras = [p.strip() for p in text.split("\n\n") if p.strip()]
