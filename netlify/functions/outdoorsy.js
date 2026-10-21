@@ -18,22 +18,40 @@ exports.handler = async function (event) {
   const url = process.env.OUTDOORSY_ICAL_URL;
   if (!url) return reply({ ranges: [], note: "OUTDOORSY_ICAL_URL is not set" });
 
-  let text;
+  const debug = !!(event && event.queryStringParameters && event.queryStringParameters.debug);
+
+  // Outdoorsy turns away requests that don't look like a browser
+  const headers = {
+    "User-Agent":
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
+      "(KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+    "Accept": "text/calendar,text/plain,*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+  };
+
+  let res, text;
   try {
-    const res = await fetch(url, {
-      headers: { "User-Agent": "barnett-motorhome-rentals-website" },
-    });
-    if (!res.ok) return reply({ ranges: [], note: "outdoorsy returned " + res.status });
+    res = await fetch(url, { headers: headers, redirect: "follow" });
     text = await res.text();
   } catch (err) {
     return reply({ ranges: [], note: "could not reach outdoorsy" });
   }
 
-  const ranges = parse(text);
-  const body = { ranges: ranges };
-  if (event && event.queryStringParameters && event.queryStringParameters.debug) {
+  if (!res.ok) {
+    const out = { ranges: [], note: "outdoorsy returned " + res.status };
+    if (debug) {
+      out.sample = text.slice(0, 200);
+      out.urlLength = url.length;
+      out.urlTail = url.slice(-8);
+    }
+    return reply(out);
+  }
+
+  const body = { ranges: parse(text) };
+  if (debug) {
     body.events = countEvents(text);
     body.bytes = text.length;
+    body.sample = text.slice(0, 200);
   }
   return reply(body);
 };
