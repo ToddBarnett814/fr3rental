@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FAQ &amp; Rental Rules | Barnett Motorhome Rentals</title>
+<title>FAQ &amp; Rental Rules | {{business_name}}</title>
 <meta name="description" content="License requirements, insurance, pets, mileage, delivery and everything else people ask before renting the FR3.">
 <meta name="theme-color" content="#22392e">
-<link rel="canonical" href="https://fr3rental.netlify.app/faq.html">
+<link rel="canonical" href="{{site_url}}/faq.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="FAQ &amp; Rental Rules | Barnett Motorhome Rentals">
+<meta property="og:title" content="FAQ &amp; Rental Rules | {{business_name}}">
 <meta property="og:description" content="License requirements, insurance, pets, mileage, delivery and everything else people ask before renting the FR3.">
-<meta property="og:image" content="https://fr3rental.netlify.app/assets/images/exterior-sunset-campsite.jpg">
+<meta property="og:image" content="{{site_url}}/{{hero_image}}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +19,14 @@
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{
 "@context":"https://schema.org","@type":"LocalBusiness",
-"name":"Barnett Motorhome Rentals",
-"description":"2020 Forest River FR3 Class A motorhome rental in Redlands, California. Sleeps 10, or 6 adults, bunkhouse floor plan, delivery available.",
-"telephone":"+16617335757",
-"email":"toddcbarnett@yahoo.com",
-"url":"https://fr3rental.netlify.app",
-"image":"https://fr3rental.netlify.app/assets/images/exterior-sunset-campsite.jpg",
-"address":{"@type":"PostalAddress","addressLocality":"Redlands, CA"},
-"priceRange":"$225-$325 per night"
+"name":"{{business_name}}",
+"description":"{{own_stamp_title}} Class A motorhome rental in Redlands, California. Sleeps 10, or 6 adults, bunkhouse floor plan, delivery available.",
+"telephone":"{{phone_link}}",
+"email":"{{email}}",
+"url":"{{site_url}}",
+"image":"{{site_url}}/{{hero_image}}",
+"address":{"@type":"PostalAddress","addressLocality":"{{city}}"},
+"priceRange":"{{rate1_price}}-{{rate3_price}} per night"
 }</script>
 <script>document.documentElement.className+=" js";</script>
 </head>
@@ -35,12 +35,12 @@
   <div class="container header-inner">
     <a href="index.html" class="logo">
       <span class="logo-mark">FR3</span>
-      <span class="logo-text"><b>Barnett Motorhome</b><span>Class A rentals</span></span>
+      <span class="logo-text"><b>{{logo_name}}</b><span>{{logo_tagline}}</span></span>
     </a>
     <nav class="main-nav" id="mainNav"><a href="index.html">Home</a><a href="the-rv.html">The RV</a><a href="rates.html">Rates</a><a href="book.html">Availability</a><a href="faq.html" class="active">FAQ</a><a href="contact.html">Contact</a></nav>
     <div class="header-actions">
-      <a href="tel:+16617335757" class="header-tel"><span>Call or text</span><b>(661) 733-5757</b></a>
-      <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-sm">Text us</a>
+      <a href="tel:{{phone_link}}" class="header-tel"><span>Call or text</span><b>{{phone_display}}</b></a>
+      <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-sm">Text us</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -56,10 +56,10 @@
 </section>
 <div class="contact-strip">
   <div class="container">
-    <span>To check availability or request a quote:</span>
-    <a href="tel:+16617335757">Call (661) 733-5757</a>
+    <span>{{contact_strip}}</span>
+    <a href="tel:{{phone_link}}">Call {{phone_display}}</a>
     <span class="muted-light">or</span>
-    <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome.">send a text</a>
+    <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome.">send a text</a>
   </div>
 </div>
 
@@ -75,7 +75,7 @@
         <div class="faq-a"><p>Ten berths in total: a king in the master bedroom, a full bed over the cab, bunks, two pull-out couches and a dinette conversion bed. Ten works with kids in the mix; for a group of adults, six is the realistic number. Either way there are eight seatbelts, so eight is the maximum number of passengers permitted while the RV is moving.</p></div>
       </div><div class="faq-item">
         <button class="faq-q" type="button">What's special about the layout?<span class="pm">+</span></button>
-        <div class="faq-a"><p>THE smartest Floor Plan for Dinner, Games and Hangout: the Dining Table faces the Couch rather than sitting against a wall, which is rare in a Class A. With the swivel seats turned around and a few lawn chairs added, you can seat 12.</p></div>
+        <div class="faq-a"><p>{{card1_title}} for Dinner, Games and Hangout: the Dining Table faces the Couch rather than sitting against a wall, which is rare in a Class A. With the swivel seats turned around and a few lawn chairs added, you can seat 12.</p></div>
       </div><div class="faq-item">
         <button class="faq-q" type="button">What about insurance?<span class="pm">+</span></button>
         <div class="faq-a"><p>Proof of insurance is required before the keys are handed over. Send your documentation when you book and it will be reviewed to confirm the rental is covered.</p></div>
@@ -114,8 +114,8 @@
       <p>A substantial share of renters have never driven anything larger than a pickup. Additional time is set aside at the walkthrough for first-time renters, at no charge.</p>
       <p>Mention it when you inquire and the walkthrough is paced accordingly, with recommendations for straightforward campgrounds nearby. If you would prefer not to drive it, delivery can be quoted to your site.</p>
       <div class="btn-row mt-2">
-        <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Send a question</a>
-        <a href="tel:+16617335757" class="btn btn-ghost">Call</a>
+        <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Send a question</a>
+        <a href="tel:{{phone_link}}" class="btn btn-ghost">Call</a>
       </div>
     </div>
   </div>
@@ -128,8 +128,8 @@
       <h2>Still have a question?</h2>
       <p>Call or text and it will be answered directly.</p>
       <div class="btn-row">
-        <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-lg">Text (661) 733-5757</a>
-        <a href="tel:+16617335757" class="btn btn-outline-light btn-lg">Call (661) 733-5757</a>
+        <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-lg">Text {{phone_display}}</a>
+        <a href="tel:{{phone_link}}" class="btn btn-outline-light btn-lg">Call {{phone_display}}</a>
       </div>
     </div>
   </div>
@@ -141,9 +141,9 @@
       <div>
         <a href="index.html" class="logo">
           <span class="logo-mark">FR3</span>
-          <span class="logo-text"><b>Barnett Motorhome</b><span>Class A rentals</span></span>
+          <span class="logo-text"><b>{{logo_name}}</b><span>{{logo_tagline}}</span></span>
         </a>
-        <p class="footer-blurb">A privately owned Class A motorhome available for rental in Redlands, California. Inquiries are handled directly by the owner.</p>
+        <p class="footer-blurb">{{footer_blurb}}</p>
       </div>
       <div>
         <h5>The rental</h5>
@@ -154,9 +154,9 @@
       </div>
       <div>
         <h5>Get in touch</h5>
-        <a href="tel:+16617335757">(661) 733-5757</a>
-        <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome.">Send a text</a>
-        <a href="mailto:toddcbarnett@yahoo.com">toddcbarnett@yahoo.com</a>
+        <a href="tel:{{phone_link}}">{{phone_display}}</a>
+        <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome.">Send a text</a>
+        <a href="mailto:{{email}}">{{email}}</a>
         <a href="contact.html">Contact page</a>
       </div>
       <div>
@@ -164,21 +164,22 @@
         <a href="legal.html#terms">Rental terms</a>
         <a href="legal.html#cancellation">Cancellation policy</a>
         <a href="legal.html#privacy">Privacy</a>
-        <span style="display:block;padding:5px 0">Based in Redlands, CA</span>
+        <span style="display:block;padding:5px 0">Based in {{city}}</span>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="year">2026</span> Barnett Motorhome Rentals. All rights reserved.</p>
-      <p>Rates and availability subject to change. Gallery photos are of the actual RV.</p>
+      <p>&copy; <span id="year">2026</span> {{business_name}}. All rights reserved.</p>
+      <p>{{footer_smallprint}}</p>
     </div>
   </div>
 </footer>
 
 <div class="call-bar">
-  <a href="tel:+16617335757" class="btn btn-light">Call</a>
-  <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Text your dates</a>
+  <a href="tel:{{phone_link}}" class="btn btn-light">Call</a>
+  <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Text your dates</a>
 </div>
 
 <script src="script.js"></script>
+<script src="edit.js" defer></script>
 </body>
 </html>

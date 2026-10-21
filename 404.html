@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found | Barnett Motorhome Rentals</title>
+<title>Page not found | {{business_name}}</title>
 <meta name="description" content="That page doesn't exist.">
 <meta name="theme-color" content="#22392e">
-<link rel="canonical" href="https://fr3rental.netlify.app/404.html">
+<link rel="canonical" href="{{site_url}}/404.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Page not found | Barnett Motorhome Rentals">
+<meta property="og:title" content="Page not found | {{business_name}}">
 <meta property="og:description" content="That page doesn't exist.">
-<meta property="og:image" content="https://fr3rental.netlify.app/assets/images/exterior-sunset-campsite.jpg">
+<meta property="og:image" content="{{site_url}}/{{hero_image}}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +19,14 @@
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{
 "@context":"https://schema.org","@type":"LocalBusiness",
-"name":"Barnett Motorhome Rentals",
-"description":"2020 Forest River FR3 Class A motorhome rental in Redlands, California. Sleeps 10, or 6 adults, bunkhouse floor plan, delivery available.",
-"telephone":"+16617335757",
-"email":"toddcbarnett@yahoo.com",
-"url":"https://fr3rental.netlify.app",
-"image":"https://fr3rental.netlify.app/assets/images/exterior-sunset-campsite.jpg",
-"address":{"@type":"PostalAddress","addressLocality":"Redlands, CA"},
-"priceRange":"$225-$325 per night"
+"name":"{{business_name}}",
+"description":"{{own_stamp_title}} Class A motorhome rental in Redlands, California. Sleeps 10, or 6 adults, bunkhouse floor plan, delivery available.",
+"telephone":"{{phone_link}}",
+"email":"{{email}}",
+"url":"{{site_url}}",
+"image":"{{site_url}}/{{hero_image}}",
+"address":{"@type":"PostalAddress","addressLocality":"{{city}}"},
+"priceRange":"{{rate1_price}}-{{rate3_price}} per night"
 }</script>
 <script>document.documentElement.className+=" js";</script>
 </head>
@@ -35,12 +35,12 @@
   <div class="container header-inner">
     <a href="index.html" class="logo">
       <span class="logo-mark">FR3</span>
-      <span class="logo-text"><b>Barnett Motorhome</b><span>Class A rentals</span></span>
+      <span class="logo-text"><b>{{logo_name}}</b><span>{{logo_tagline}}</span></span>
     </a>
     <nav class="main-nav" id="mainNav"><a href="index.html">Home</a><a href="the-rv.html">The RV</a><a href="rates.html">Rates</a><a href="book.html">Availability</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></nav>
     <div class="header-actions">
-      <a href="tel:+16617335757" class="header-tel"><span>Call or text</span><b>(661) 733-5757</b></a>
-      <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-sm">Text us</a>
+      <a href="tel:{{phone_link}}" class="header-tel"><span>Call or text</span><b>{{phone_display}}</b></a>
+      <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-sm">Text us</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -65,9 +65,9 @@
       <div>
         <a href="index.html" class="logo">
           <span class="logo-mark">FR3</span>
-          <span class="logo-text"><b>Barnett Motorhome</b><span>Class A rentals</span></span>
+          <span class="logo-text"><b>{{logo_name}}</b><span>{{logo_tagline}}</span></span>
         </a>
-        <p class="footer-blurb">A privately owned Class A motorhome available for rental in Redlands, California. Inquiries are handled directly by the owner.</p>
+        <p class="footer-blurb">{{footer_blurb}}</p>
       </div>
       <div>
         <h5>The rental</h5>
@@ -78,9 +78,9 @@
       </div>
       <div>
         <h5>Get in touch</h5>
-        <a href="tel:+16617335757">(661) 733-5757</a>
-        <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome.">Send a text</a>
-        <a href="mailto:toddcbarnett@yahoo.com">toddcbarnett@yahoo.com</a>
+        <a href="tel:{{phone_link}}">{{phone_display}}</a>
+        <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome.">Send a text</a>
+        <a href="mailto:{{email}}">{{email}}</a>
         <a href="contact.html">Contact page</a>
       </div>
       <div>
@@ -88,21 +88,22 @@
         <a href="legal.html#terms">Rental terms</a>
         <a href="legal.html#cancellation">Cancellation policy</a>
         <a href="legal.html#privacy">Privacy</a>
-        <span style="display:block;padding:5px 0">Based in Redlands, CA</span>
+        <span style="display:block;padding:5px 0">Based in {{city}}</span>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; <span id="year">2026</span> Barnett Motorhome Rentals. All rights reserved.</p>
-      <p>Rates and availability subject to change. Gallery photos are of the actual RV.</p>
+      <p>&copy; <span id="year">2026</span> {{business_name}}. All rights reserved.</p>
+      <p>{{footer_smallprint}}</p>
     </div>
   </div>
 </footer>
 
 <div class="call-bar">
-  <a href="tel:+16617335757" class="btn btn-light">Call</a>
-  <a href="sms:+16617335757?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Text your dates</a>
+  <a href="tel:{{phone_link}}" class="btn btn-light">Call</a>
+  <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Text your dates</a>
 </div>
 
 <script src="script.js"></script>
+<script src="edit.js" defer></script>
 </body>
 </html>

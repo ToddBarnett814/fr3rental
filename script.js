@@ -1,14 +1,14 @@
 /* ============================================================
-   Barnett Motorhome Rentals — site behavior
+   {{business_name}} — site behavior
    ============================================================ */
 
 // ---- EDIT THESE TWO ----------------------------------------
-var OWNER_EMAIL = "toddcbarnett@yahoo.com";
-var OWNER_PHONE = "+16617335757";
+var OWNER_EMAIL = "{{email}}";
+var OWNER_PHONE = "{{phone_link}}";
 
 /* Dates already booked. Format: ["YYYY-MM-DD","YYYY-MM-DD"] (inclusive).
    Update this list by hand as trips get booked, then redeploy. */
-var BOOKED_RANGES = [["2026-09-18", "2026-09-24"], ["2026-10-09", "2026-10-13"], ["2026-11-24", "2026-11-30"], ["2026-12-19", "2026-12-27"]];
+var BOOKED_RANGES = {{booked_ranges}};
 // -------------------------------------------------------------
 
 (function () {

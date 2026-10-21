@@ -18,6 +18,7 @@ TEMPLATES = os.path.join(HERE, "templates")
 PAGES = [
     "index.html", "the-rv.html", "rates.html", "book.html", "faq.html",
     "contact.html", "legal.html", "thanks.html", "404.html", "script.js",
+    "edit.js",
 ]
 
 # pages listed in sitemap.xml (not 404 / thanks / the script)
