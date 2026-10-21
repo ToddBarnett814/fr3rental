@@ -43,9 +43,9 @@
 
   var css = document.createElement("style");
   css.textContent =
-    "#bmr-edit{position:fixed;right:16px;bottom:16px;z-index:9999;" +
+    "#bmr-edit{position:fixed;left:16px;bottom:16px;z-index:2147483646;" +
       "font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}" +
-    "#bmr-edit-btn{display:flex;align-items:center;gap:7px;margin-left:auto;" +
+    "#bmr-edit-btn{display:flex;align-items:center;gap:7px;" +
       "background:#22392e;color:#fff;border:0;border-radius:999px;cursor:pointer;" +
       "padding:11px 18px;font-size:.92rem;font-weight:600;letter-spacing:.01em;" +
       "box-shadow:0 2px 6px rgba(25,23,19,.18),0 14px 34px rgba(25,23,19,.22)}" +
