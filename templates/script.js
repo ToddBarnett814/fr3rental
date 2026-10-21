@@ -142,10 +142,28 @@ var BOOKED_RANGES = {{booked_ranges}};
     var start = null, end = null;
 
     var booked = {};
-    BOOKED_RANGES.forEach(function (r) {
-      var d = new Date(r[0] + "T00:00:00"), stop = new Date(r[1] + "T00:00:00");
+    function block(from, to) {
+      var d = new Date(from + "T00:00:00"), stop = new Date(to + "T00:00:00");
       while (d <= stop) { booked[key(d)] = true; d.setDate(d.getDate() + 1); }
-    });
+    }
+    BOOKED_RANGES.forEach(function (r) { block(r[0], r[1]); });
+
+    /* Bookings made on Outdoorsy, pulled in live. If this fails for any
+       reason the calendar still shows the dates entered by hand. */
+    if (window.fetch) {
+      fetch("/.netlify/functions/outdoorsy")
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          if (!data || !data.ranges || !data.ranges.length) return;
+          data.ranges.forEach(function (r) { block(r[0], r[1]); });
+          // a date the visitor already picked may have just become unavailable
+          if (start && booked[key(start)]) { start = null; end = null; }
+          if (end && booked[key(end)]) { end = null; }
+          render();
+          update();
+        })
+        .catch(function () { /* keep the hand-entered dates */ });
+    }
 
     function key(d) {
       return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
