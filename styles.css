@@ -582,3 +582,90 @@ h4{font-size:1.1rem}
 .floorplan img{width:100%;min-width:420px;height:auto}
 .split.wide-right{grid-template-columns:.82fr 1.18fr}
 @media (max-width:900px){.split.wide-right{grid-template-columns:1fr}}
+
+
+/* ---------- Rate headline + price calculator ---------- */
+.rate-headline{
+  display:grid;grid-template-columns:minmax(240px,320px) 1fr;gap:34px;align-items:start;
+  background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);
+  padding:32px 30px;box-shadow:var(--shadow-sm);
+}
+.rate-big .k{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--ink-55)}
+.rate-big .price{font-family:var(--display);font-size:3.2rem;line-height:1.05;margin:.1em 0 .25em}
+.rate-big .price small{font-family:var(--body);font-size:1rem;font-weight:600;color:var(--ink-55);margin-left:.15em}
+.rate-big p{font-size:.92rem;color:var(--ink-55);margin:0}
+.rate-inc{margin:0}
+@media(max-width:760px){.rate-headline{grid-template-columns:1fr;gap:22px;padding:26px 22px}}
+
+.calc{max-width:720px;margin:0 auto}
+.calc-top{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:700px){.calc-top{grid-template-columns:1fr 1fr}}
+.calc .calc-h{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-55);margin:18px 0 8px}
+.calc-addons{display:flex;flex-direction:column;gap:2px}
+.calc-add{
+  display:grid;grid-template-columns:1fr auto 74px;gap:12px;align-items:center;
+  padding:9px 2px;border-bottom:1px solid var(--line-soft);
+  font-size:.93rem;font-weight:500;text-transform:none;letter-spacing:0;color:var(--ink);margin:0;cursor:pointer;
+}
+.calc-add .n{display:flex;flex-direction:column;gap:2px}
+.calc-add .n .sub{font-size:.78rem;color:var(--ink-55);font-weight:400;line-height:1.35}
+.calc-add .pr{font-size:.84rem;color:var(--ink-55);white-space:nowrap}
+.calc-add input[type=number]{width:100%;padding:.42em .5em;text-align:center;font-size:.92rem;
+  background:var(--cream);border:1px solid var(--line);border-radius:var(--r-sm)}
+.calc-add input[type=checkbox]{justify-self:center;width:18px;height:18px;accent-color:var(--pine)}
+.calc-add.free{opacity:.72;grid-template-columns:1fr auto}
+.calc-out{margin-top:20px;border-top:1.5px solid var(--ink);padding-top:4px}
+.calc-out .tot .k{color:var(--ink);font-size:.95rem;text-transform:none;letter-spacing:0;font-weight:700}
+.calc-out .tot{border-top:1px solid var(--line)}
+.calc-out .big .v{font-size:1.3rem;font-family:var(--display)}
+.calc-out .big .k{font-size:1rem}
+
+/* ---------- Rental agreement page ---------- */
+.agreement-body{background:var(--cream)}
+.ag-bar{background:var(--white);border-bottom:1px solid var(--line);padding:14px 0}
+.ag-bar-in{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.ag-wrap{max-width:860px;padding-top:28px}
+.ag-wrap .panel{margin-bottom:22px}
+.ag-h{font-size:1.05rem;margin:0 0 4px}
+.ag-h + .small{margin-bottom:14px}
+.ag-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.ag-grid{grid-template-columns:1fr}}
+
+.ag-doc{
+  background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-lg);
+  padding:44px 46px;box-shadow:var(--shadow-sm);font-size:.9rem;line-height:1.55;
+}
+@media(max-width:620px){.ag-doc{padding:26px 20px}}
+.ag-doc-head{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:18px}
+.ag-doc h1{font-size:1.45rem;margin:0 0 8px;line-height:1.2}
+.ag-doc h2{font-size:1rem;letter-spacing:.07em;text-transform:uppercase;margin:26px 0 8px;
+  padding-top:12px;border-top:1px solid var(--line)}
+.ag-doc h3{font-size:.95rem;margin:16px 0 4px}
+.ag-doc p{margin:0 0 9px}
+.ag-party{font-family:var(--display);font-size:1.15rem;margin:0 0 2px}
+.ag-dates{font-size:.85rem;color:var(--ink-55);margin:0}
+.ag-rules{margin:0 0 10px;padding-left:18px;font-size:.87rem}
+.ag-rules li{margin-bottom:4px}
+
+.ag-table{width:100%;border-collapse:collapse;font-size:.86rem;margin:6px 0 4px}
+.ag-table td{border-bottom:1px solid var(--line-soft);padding:7px 6px;vertical-align:top}
+.ag-table td:first-child{font-weight:600;width:30%}
+.ag-table td.n{color:var(--ink-55);font-size:.8rem}
+.ag-table td.a{text-align:right;white-space:nowrap;width:110px;font-variant-numeric:tabular-nums}
+.ag-table tr.sum td{border-top:1.5px solid var(--ink);border-bottom:none;font-weight:700}
+.ag-table tr.big td{font-size:1rem}
+.ag-table tr.big td.a{font-family:var(--display);font-size:1.2rem}
+
+.ag-sign{display:grid;grid-template-columns:1fr 160px;gap:28px 24px;margin-top:34px}
+.ag-sign .line{display:block;border-bottom:1px solid var(--ink);height:30px}
+.ag-sign .lbl{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-55)}
+
+@media print{
+  .no-print,.ag-bar{display:none !important}
+  .agreement-body{background:#fff}
+  .ag-wrap{max-width:none;padding:0}
+  .ag-doc{border:0;box-shadow:none;padding:0;border-radius:0;font-size:10.5pt}
+  .ag-doc h3{break-after:avoid}
+  .ag-sign{break-inside:avoid}
+  @page{margin:.6in .7in}
+}

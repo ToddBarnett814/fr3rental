@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Rental Agreement | {{business_name}}</title>
+<meta name="theme-color" content="#22392e">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body class="agreement-body">
+
+<header class="ag-bar no-print">
+  <div class="container ag-bar-in">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">FR3</span>
+      <span class="logo-text"><b>{{logo_name}}</b><span>Rental agreement</span></span>
+    </a>
+    <a href="tel:{{phone_link}}" class="header-tel"><span>Questions</span><b>{{phone_display}}</b></a>
+  </div>
+</header>
+
+<main class="container ag-wrap">
+
+  <!-- ------------------------------------------------ owner setup -->
+  <section class="panel no-print" id="agSetup">
+    <h2 class="ag-h">Trip details</h2>
+    <p class="small muted">The owner fills this in. If he sent you a link, it is already done.</p>
+    <div class="ag-grid">
+      <div class="field"><label for="aHandoff">Handoff date</label><input type="date" id="aHandoff"></div>
+      <div class="field"><label for="aHandoffT">Handoff time</label><input type="time" id="aHandoffT" value="07:00"></div>
+      <div class="field"><label for="aReturn">Return date</label><input type="date" id="aReturn"></div>
+      <div class="field"><label for="aReturnT">Return time</label><input type="time" id="aReturnT" value="17:00"></div>
+      <div class="field"><label for="aRate">Agreed daily rate</label><input type="number" id="aRate" min="0" step="1" value="{{rate_day}}"></div>
+      <div class="field"><label>&nbsp;</label><button type="button" class="btn btn-ghost btn-sm btn-block" id="aLink">Copy link for the renter</button></div>
+    </div>
+    <p class="small muted" id="aLinkMsg" style="display:none">Link copied. Send it to the renter.</p>
+  </section>
+
+  <!-- ------------------------------------------------ renter form -->
+  <form class="panel no-print" id="agForm" name="rental-agreement" method="POST"
+        data-netlify="true" data-netlify-honeypot="bot-field" action="/thanks.html">
+    <input type="hidden" name="form-name" value="rental-agreement">
+    <p style="display:none"><label>Leave blank<input name="bot-field"></label></p>
+
+    <h2 class="ag-h">Your details</h2>
+    <div class="ag-grid">
+      <div class="field"><label for="aName">Full name</label><input type="text" id="aName" name="renter_name" required></div>
+      <div class="field"><label for="aPhone">Phone</label><input type="tel" id="aPhone" name="renter_phone" required></div>
+      <div class="field"><label for="aEmail">Email</label><input type="email" id="aEmail" name="renter_email" required></div>
+      <div class="field"><label for="aPpl">People on the trip</label><input type="number" id="aPpl" name="people" min="1" max="10" value="4"></div>
+    </div>
+    <div class="field"><label for="aAddr">Address</label><input type="text" id="aAddr" name="renter_address" required></div>
+
+    <h2 class="ag-h">Drivers</h2>
+    <p class="small muted">Everyone who will drive it. All drivers must be 25 or older and bring their licence to the handoff.</p>
+    <div class="field"><label for="aDrivers">Driver names and ages</label>
+      <textarea id="aDrivers" name="drivers" placeholder="Chad Nottingham, 41&#10;Sarah Nottingham, 39" required></textarea></div>
+
+    <h2 class="ag-h">Extras</h2>
+    <div class="ag-grid">
+      <div class="field"><label for="aPets">Dogs</label>
+        <select id="aPets" name="dogs"><option value="0">None</option><option value="1">1 or 2</option></select></div>
+      <div class="field"><label for="aMiles">Delivery miles (round trip)</label><input type="number" id="aMiles" name="delivery_miles" min="0" max="2000" value="0"></div>
+    </div>
+    <div class="calc-addons" id="aAddons"></div>
+
+    <input type="hidden" name="trip_dates" id="hDates">
+    <input type="hidden" name="daily_rate" id="hRate">
+    <input type="hidden" name="addons_chosen" id="hAddons">
+    <input type="hidden" name="subtotal" id="hSubtotal">
+    <input type="hidden" name="due_at_signing" id="hHold">
+    <input type="hidden" name="due_at_handoff" id="hBalance">
+
+    <button type="submit" class="btn btn-primary btn-block" style="margin-top:1.4em">Send this to the owner</button>
+    <p class="form-note">Nothing is charged here. The owner confirms everything before anything is paid.</p>
+  </form>
+
+  <!-- ------------------------------------------------ the agreement -->
+  <article class="ag-doc" id="agDoc">
+    <div class="ag-doc-head">
+      <h1>2020 Forest River FR3 32DS Rental Agreement</h1>
+      <p class="ag-party" id="dName">&mdash;</p>
+      <p class="ag-dates" id="dDates">&mdash;</p>
+    </div>
+
+    <ul class="ag-rules">
+      <li>All drivers on this agreement will provide a current valid driver licence and be at least 25 years of age.</li>
+      <li>No smoking. No roof access. No climbing on the ladder.</li>
+    </ul>
+
+    <h2>Charges</h2>
+    <table class="ag-table" id="dTable"><tbody></tbody></table>
+
+    <h2>Rental terms</h2>
+    <p>These terms are the agreement between {{business_name}} (Owner) and <b id="dName2">the Renter</b> for the 2020 Forest River FR3 32DS, <span id="dDates2">the dates above</span>.</p>
+
+    <h3>1 &nbsp; Rental period and authorized drivers</h3>
+    <p>Handoff and return are at the dates and times on this agreement. <span id="dIncl">The rental days include the mileage and generator hours listed above.</span> Every driver must be listed and approved, provide a current valid driver licence, and be at least 25 years of age. Renter is responsible for his occupants, guests, and approved drivers.</p>
+
+    <h3>2 &nbsp; Rental charges and reservation deposit</h3>
+    <p id="dCharges">The subtotal, security deposit, reservation deposit and remaining balance are set out in the table above. The reservation deposit is nonrefundable, is due at signing, and is credited toward the total. Optional items are charged only as selected and recorded. Additional fuel, mileage, generator use, propane, tolls, damage, and other applicable charges are due on return.</p>
+
+    <h3>3 &nbsp; Permitted use and care</h3>
+    <p>Renter must follow applicable laws, campground rules, and the walkthrough instructions. No smoking, roof access, or ladder climbing. Park on a reasonably level, permitted surface with safe clearances. Secure doors, windows, vents, and compartments; keep exhaust and ventilation unobstructed. Do not take the RV onto a racecourse, trail, or other off-road surface. Keep the awning retracted unless Owner authorizes use. No repairs or modifications without approval, except immediate steps needed to protect people or prevent further damage.</p>
+
+    <h3>4 &nbsp; Damage and tires</h3>
+    <p>From handoff through return, Renter is responsible for loss or damage caused by his use, movement, negligence, breach of this agreement, or the acts of his occupants, guests, or approved drivers, including misuse of RV systems. Renter is responsible for tire damage during authorized possession or use. Replacement tires must be equivalent to TOYO tires meeting RV specifications and approved by Owner. Responsibility is not limited to the security deposit.</p>
+
+    <h3>5 &nbsp; Insurance and security deposit</h3>
+    <p id="dIns">Insurance is charged per day as shown above, subject to policy terms and claim decisions; the stated policy limit is $500,000. For each separate covered loss for which Renter is responsible, Renter will reimburse the applicable deductible, up to $1,000 per event, and any responsible loss insurance does not pay. Owner may deduct documented damage not covered by insurance and other unpaid amounts due under this agreement from the security deposit. Owner will provide an itemized accounting and return the unused balance after inspection and reconciliation; no charge will be collected twice.</p>
+
+    <h3>6 &nbsp; Roadside assistance and incidents</h3>
+    <p>Renter will maintain AAA roadside assistance applicable to this rented motorhome; MBA roadside service is not charged. Renter must promptly notify Owner of accidents, damage, breakdowns, theft, or citations, take reasonable steps to prevent further loss, photograph the circumstances, and cooperate with claim requirements.</p>
+
+    <h3>7 &nbsp; Return condition and cleaning</h3>
+    <p id="dReturn">Return the RV at the agreed time, remove belongings and trash, and leave its systems as instructed. The cleaning fee is refundable if the RV is returned clean; the dump and flush fee applies. An additional excess cleaning fee applies if necessary. Pet fees cover cleaning only; pet damage remains Renter&rsquo;s responsibility. Record return fuel, propane, odometer, and generator readings. Additional charges follow the table above, including the late return fee if returned late.</p>
+
+    <h3>8 &nbsp; Inspection and acceptance</h3>
+    <p>Owner and Renter will document condition at handoff and return. Return does not waive a claim for damage that could not reasonably be identified at pickup. Owner will notify Renter promptly upon discovery and provide photographs and reasonable supporting costs. The signatures below acknowledge this agreement.</p>
+
+    <h2>Charges settled on return</h2>
+    <ul class="ag-rules" id="dReturnFees"></ul>
+
+    <div class="ag-sign">
+      <div><span class="line"></span><span class="lbl">Renter signature</span></div>
+      <div><span class="line"></span><span class="lbl">Date</span></div>
+      <div><span class="line"></span><span class="lbl">Owner signature</span></div>
+      <div><span class="line"></span><span class="lbl">Date</span></div>
+    </div>
+  </article>
+
+  <div class="no-print" style="text-align:center;margin:28px 0 60px">
+    <button type="button" class="btn btn-primary" id="agPrint">Print or save as PDF</button>
+  </div>
+</main>
+
+<script>var RATES = {{rates_json}};</script>
+<script src="agreement.js"></script>
+</body>
+</html>

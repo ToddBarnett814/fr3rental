@@ -1,60 +1,34 @@
 {
-  "rate1_name": "Weekday",
-  "rate1_price": "$225",
-  "rate1_when": "Sunday through Thursday",
-  "rate2_name": "Weekend",
-  "rate2_price": "$275",
-  "rate2_when": "Friday and Saturday",
-  "rate3_name": "Peak season",
-  "rate3_price": "$325",
-  "rate3_when": "June–August and major holidays",
-  "fee_cleaning_title": "$150 cleaning fee",
-  "fee_cleaning_text": "Flat, one time, every rental.",
-  "fee_deposit_title": "$500 deposit",
-  "fee_deposit_text": "Refundable, returned within 5 days of a clean return.",
-  "fee_mileage_title": "100 free miles / day",
-  "fee_pet_title": "Pet friendly &mdash; $125",
-  "fee_pet_text": "Dogs welcome. No cats. No smoking.",
+  "rate_day": "319",
+  "rate_note": "Discounted rates are sometimes available. Ask when you call.",
+  "fee_insurance_day": "49",
+  "fee_prep": "175",
+  "fee_dump": "100",
+  "fee_cleaning": "100",
+  "fee_cleaning_note": "Refunded if the RV comes back clean.",
+  "fee_deposit": "1500",
+  "fee_deposit_note": "Refundable, returned after inspection.",
+  "fee_pet": "125",
+  "fee_pet_note": "Limit 2 dogs. Covers cleaning only &mdash; damage is separate.",
+  "fee_delivery_mile": "5",
+  "miles_per_day": "100",
+  "miles_extra": "1",
+  "gen_hours_per_day": "4",
+  "gen_extra": "4",
+  "fuel_gal": "8",
+  "propane_gal": "6",
+  "fee_late": "200",
+  "fee_excess_clean": "200",
   "addons": [
-    {
-      "name": "RV-connected gas bbq grill",
-      "price": "Ask"
-    },
-    {
-      "name": "Tow option",
-      "price": "Ask"
-    },
-    {
-      "name": "Comfortable bedding",
-      "price": "Ask"
-    },
-    {
-      "name": "Bath towels",
-      "price": "Ask"
-    },
-    {
-      "name": "Cleaning supply pkg (the convenient, $saving one)",
-      "price": "Ask"
-    },
-    {
-      "name": "Lawn chairs and tables",
-      "price": "Ask"
-    },
-    {
-      "name": "EZups",
-      "price": "Ask"
-    },
-    {
-      "name": "64-qt ice chests",
-      "price": "Ask"
-    },
-    {
-      "name": "Inflatable foot pool",
-      "price": "Ask"
-    },
-    {
-      "name": "Delivery, setup &amp; pickup",
-      "price": "Quoted by distance"
-    }
+    { "name": "Bedding", "price": "50", "unit": "person", "note": "Pillow, sheets, blanket or comforter" },
+    { "name": "Towel &amp; wash cloth", "price": "5", "unit": "each", "note": "Per set" },
+    { "name": "Lawn chair", "price": "7", "unit": "each", "note": "" },
+    { "name": "Table", "price": "20", "unit": "each", "note": "" },
+    { "name": "Ice chest (60-qt)", "price": "20", "unit": "each", "note": "" },
+    { "name": "EZ-up", "price": "20", "unit": "each", "note": "" },
+    { "name": "Patio rug (9 x 12 ft)", "price": "20", "unit": "each", "note": "" },
+    { "name": "Gas BBQ grill", "price": "55", "unit": "flat", "note": "Runs off the RV propane line &mdash; no canister or charcoal needed" },
+    { "name": "Supplies", "price": "2.50", "unit": "person-day", "note": "Cleaning spray, dish and hand soap, tank pods, toilet paper, paper towels" },
+    { "name": "Kitchenware", "price": "0", "unit": "flat", "note": "Included at no charge" }
   ]
 }

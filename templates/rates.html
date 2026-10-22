@@ -26,7 +26,7 @@
 "url":"{{site_url}}",
 "image":"{{site_url}}/{{hero_image}}",
 "address":{"@type":"PostalAddress","addressLocality":"{{city}}"},
-"priceRange":"{{rate1_price}}-{{rate3_price}} per night"
+"priceRange":"${{rate_day}} per day"
 }</script>
 <script>document.documentElement.className+=" js";</script>
 </head>
@@ -66,55 +66,72 @@
 
 <section class="section">
   <div class="container">
-    <div class="rate-grid">
-      <div class="rate reveal">
-        <h3>{{rate1_name}}</h3>
-        <div class="price">{{rate1_price}}<small>/night</small></div>
-        <p>{{rate1_when}}</p>
+    <div class="rate-headline reveal">
+      <div class="rate-big">
+        <span class="k">Daily rate</span>
+        <div class="price">${{rate_day}}<small>/day</small></div>
+        <p>{{rate_note}}</p>
       </div>
-      <div class="rate featured reveal reveal-d1">
-        <span class="tag">Most booked</span>
-        <h3>{{rate2_name}}</h3>
-        <div class="price">{{rate2_price}}<small>/night</small></div>
-        <p>{{rate2_when}}</p>
-      </div>
-      <div class="rate reveal reveal-d2">
-        <h3>{{rate3_name}}</h3>
-        <div class="price">{{rate3_price}}<small>/night</small></div>
-        <p>{{rate3_when}}</p>
-      </div>
+      <ul class="checks rate-inc">
+        <li>{{miles_per_day}} miles a day included</li>
+        <li>{{gen_hours_per_day}} generator hours a day included</li>
+        <li>Kitchenware &mdash; pots, pans, dishes, utensils, coffee maker</li>
+        <li>Walkthrough and systems orientation before you leave</li>
+        <li>Leveling jacks, toll transponder, indoor and outdoor showers</li>
+      </ul>
     </div>
 
-    <div class="fine-grid">
-      <div class="fine"><span class="ico">🧺</span><div><b>{{fee_cleaning_title}}</b><span class="t">{{fee_cleaning_text}}</span></div></div>
-      <div class="fine"><span class="ico">🔒</span><div><b>{{fee_deposit_title}}</b><span class="t">{{fee_deposit_text}}</span></div></div>
-      <div class="fine"><span class="ico">🛣️</span><div><b>{{fee_mileage_title}}</b><span class="t">Going further is fine — we price the extra miles up front.</span></div></div>
-      <div class="fine"><span class="ico">🐕</span><div><b>{{fee_pet_title}}</b><span class="t">{{fee_pet_text}}</span></div></div>
-      <div class="fine"><span class="ico">🛡️</span><div><b>Insurance required</b><span class="t">Send proof of coverage before pickup.</span></div></div>
+    <h3 class="mt-3">Charged on every rental</h3>
+    <div class="fine-grid mt-1">
+      <div class="fine"><span class="ico">&#128737;</span><div><b>Insurance &mdash; ${{fee_insurance_day}}/day</b><span class="t">$500,000 policy. You cover the deductible on a claim, up to $1,000.</span></div></div>
+      <div class="fine"><span class="ico">&#128295;</span><div><b>Prep fee &mdash; ${{fee_prep}}</b><span class="t">Getting the RV ready for your trip.</span></div></div>
+      <div class="fine"><span class="ico">&#128167;</span><div><b>Dump and flush &mdash; ${{fee_dump}}</b><span class="t">Tanks emptied and flushed after you return.</span></div></div>
+      <div class="fine"><span class="ico">&#129531;</span><div><b>Cleaning &mdash; ${{fee_cleaning}}</b><span class="t">{{fee_cleaning_note}}</span></div></div>
+      <div class="fine"><span class="ico">&#128274;</span><div><b>Security deposit &mdash; ${{fee_deposit}}</b><span class="t">{{fee_deposit_note}}</span></div></div>
+      <div class="fine"><span class="ico">&#128021;</span><div><b>Dogs &mdash; ${{fee_pet}}</b><span class="t">{{fee_pet_note}}</span></div></div>
     </div>
+
+    <p class="small muted mt-2">To hold your dates, half the daily rate times the number of days is due at signing. It is nonrefundable and comes off your total.</p>
+  </section>
+
+<section class="section section-sand">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Optional</span>
+      <h2>Add-ons.</h2>
+      <p>Charged once for the trip, not per day. Kitchenware comes with the RV at no charge.</p>
+    </div>
+    <ul class="addons mt-2" style="max-width:620px;margin:0 auto">
+{{addons_html}}
+    </ul>
   </div>
 </section>
 
-<section class="section section-sand">
-  <div class="container split top">
-    <div class="split-copy reveal">
-      <span class="eyebrow">Included</span>
-      <h2>Included in the nightly rate.</h2>
-      <ul class="checks">
-        <li>100 free miles / day</li>
-        <li>6 generator hours / day</li>
-        <li>Full kitchen supplies — pots, pans, dishware, utensils</li>
-        <li>Walkthrough and systems orientation before you leave</li>
-        <li>Sewer hose, fresh water hose, and leveling blocks</li>
-        <li>Outdoor TV, awning and outside shower, ready to use</li>
-      </ul>
+<section class="section section-sand" id="estimate">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Estimate</span>
+      <h2>Add up your trip.</h2>
+      <p>Put in your days and party size, tick what you want, and see the whole figure. Nothing here is a booking &mdash; it is the same arithmetic the rental agreement uses.</p>
     </div>
-    <div class="split-copy reveal reveal-d1">
-      <span class="eyebrow">Optional</span>
-      <h2>Available add-ons.</h2>
-      <ul class="addons mt-2">
-{{addons_html}}
-      </ul>
+
+    <div class="panel calc reveal" id="calc">
+      <div class="calc-top">
+        <div class="field"><label for="cDays">Days</label><input type="number" id="cDays" min="1" max="60" value="5"></div>
+        <div class="field"><label for="cPpl">People</label><input type="number" id="cPpl" min="1" max="10" value="4"></div>
+        <div class="field"><label for="cPets">Dogs</label>
+          <select id="cPets"><option value="0">None</option><option value="1">1 or 2</option></select>
+        </div>
+        <div class="field"><label for="cMiles">Delivery miles (round trip)</label><input type="number" id="cMiles" min="0" max="2000" value="0"></div>
+      </div>
+
+      <h3 class="calc-h">Add-ons</h3>
+      <div class="calc-addons" id="cAddons"></div>
+
+      <ul class="spec-list calc-out" id="cOut"></ul>
+
+      <p class="small muted mt-2">An estimate, not a quote. Fuel, propane, extra miles, extra generator hours, tolls and any damage are settled when you bring it back.</p>
+      <a href="book.html" class="btn btn-primary btn-block" style="margin-top:1.2em">Check these dates</a>
     </div>
   </div>
 </section>
@@ -122,20 +139,16 @@
 <section class="section">
   <div class="container">
     <div class="section-head center reveal">
-      <span class="eyebrow">Worked example</span>
-      <h2>A seven-night rental.</h2>
+      <span class="eyebrow">On return</span>
+      <h2>What gets settled afterwards.</h2>
     </div>
-    <div class="panel reveal" style="max-width:560px;margin:0 auto">
-      <ul class="spec-list">
-        <li><span class="k">5 weekday nights × {{rate1_price}}</span><span class="v">$1,125</span></li>
-        <li><span class="k">2 weekend nights × {{rate2_price}}</span><span class="v">$550</span></li>
-        <li><span class="k">7+ night discount (10%)</span><span class="v">−$168</span></li>
-        <li><span class="k">Cleaning fee</span><span class="v">$150</span></li>
-        <li><span class="k">Linens, 4 people</span><span class="v">$180</span></li>
-        <li><span class="k" style="color:var(--ink);font-size:.95rem;text-transform:none;letter-spacing:0">Trip total</span><span class="v" style="font-size:1.25rem;font-family:var(--display)">$1,837</span></li>
-      </ul>
-      <p class="small muted mt-2">In addition to the $500 refundable security deposit, returned following a clean return. Fuel and campground fees are the renter's responsibility.</p>
-      <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-block mt-2" style="margin-top:1.2em">Request a quote for your dates</a>
+    <div class="fine-grid">
+      <div class="fine"><span class="ico">&#9981;</span><div><b>Fuel &mdash; ${{fuel_gal}}/gallon</b><span class="t">Bring it back full and there is nothing to pay.</span></div></div>
+      <div class="fine"><span class="ico">&#128293;</span><div><b>Propane &mdash; ${{propane_gal}}/gallon</b><span class="t">Same &mdash; only what you use.</span></div></div>
+      <div class="fine"><span class="ico">&#128739;</span><div><b>Extra miles &mdash; ${{miles_extra}}/mile</b><span class="t">Over {{miles_per_day}} miles a day.</span></div></div>
+      <div class="fine"><span class="ico">&#9889;</span><div><b>Extra generator &mdash; ${{gen_extra}}/hour</b><span class="t">Over {{gen_hours_per_day}} hours a day.</span></div></div>
+      <div class="fine"><span class="ico">&#128739;</span><div><b>Toll roads</b><span class="t">The transponder records Southern California tolls.</span></div></div>
+      <div class="fine"><span class="ico">&#9200;</span><div><b>Late return &mdash; ${{fee_late}}</b><span class="t">An extra ${{fee_excess_clean}} applies if it needs a deep clean.</span></div></div>
     </div>
   </div>
 </section>
@@ -198,6 +211,7 @@
   <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary">Text your dates</a>
 </div>
 
+<script>var RATES = {{rates_json}};</script>
 <script src="script.js"></script>
 <script src="edit.js" defer></script>
 </body>

@@ -316,79 +316,120 @@ collections:
         label: "Rates and fees"
         file: content/rates.json
         fields:
-          - name: rate1_name
-            label: "Rate 1 - name"
+          - name: rate_day
+            label: "Daily rate (number only)"
+            widget: string
+            hint: "Just the number, no dollar sign. Example: 319"
+            required: false
+          - name: rate_note
+            label: "Line under the daily rate"
             widget: string
             required: false
-          - name: rate1_price
-            label: "Rate 1 - price"
+          - name: fee_insurance_day
+            label: "Insurance per day"
             widget: string
-            hint: "Include the dollar sign"
+            hint: "Number only"
             required: false
-          - name: rate1_when
-            label: "Rate 1 - when it applies"
+          - name: fee_prep
+            label: "Prep fee"
             widget: string
+            hint: "Number only"
             required: false
-          - name: rate2_name
-            label: "Rate 2 - name"
+          - name: fee_dump
+            label: "Dump and flush fee"
             widget: string
+            hint: "Number only"
             required: false
-          - name: rate2_price
-            label: "Rate 2 - price"
+          - name: fee_cleaning
+            label: "Cleaning fee"
             widget: string
+            hint: "Number only"
             required: false
-          - name: rate2_when
-            label: "Rate 2 - when it applies"
-            widget: string
-            required: false
-          - name: rate3_name
-            label: "Rate 3 - name"
-            widget: string
-            required: false
-          - name: rate3_price
-            label: "Rate 3 - price"
-            widget: string
-            required: false
-          - name: rate3_when
-            label: "Rate 3 - when it applies"
-            widget: string
-            required: false
-          - name: fee_cleaning_title
-            label: "Cleaning fee - title"
-            widget: string
-            required: false
-          - name: fee_cleaning_text
+          - name: fee_cleaning_note
             label: "Cleaning fee - note"
             widget: string
             required: false
-          - name: fee_deposit_title
-            label: "Deposit - title"
+          - name: fee_deposit
+            label: "Security deposit"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: fee_deposit_note
+            label: "Security deposit - note"
             widget: string
             required: false
-          - name: fee_deposit_text
-            label: "Deposit - note"
+          - name: fee_pet
+            label: "Dog fee"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: fee_pet_note
+            label: "Dog fee - note"
             widget: string
             required: false
-          - name: fee_mileage_title
-            label: "Mileage - title"
+          - name: fee_delivery_mile
+            label: "Delivery, per mile"
             widget: string
+            hint: "Number only. Charged round trip."
             required: false
-          - name: fee_pet_title
-            label: "Pets - title"
+          - name: miles_per_day
+            label: "Miles included per day"
             widget: string
+            hint: "Number only"
             required: false
-          - name: fee_pet_text
-            label: "Pets - note"
+          - name: miles_extra
+            label: "Cost per extra mile"
             widget: string
+            hint: "Number only"
+            required: false
+          - name: gen_hours_per_day
+            label: "Generator hours included per day"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: gen_extra
+            label: "Cost per extra generator hour"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: fuel_gal
+            label: "Fuel, per gallon"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: propane_gal
+            label: "Propane, per gallon"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: fee_late
+            label: "Late return fee"
+            widget: string
+            hint: "Number only"
+            required: false
+          - name: fee_excess_clean
+            label: "Excess cleaning fee"
+            widget: string
+            hint: "Number only"
             required: false
           - name: addons
             label: "Add-ons"
             widget: list
             label_singular: "Add-on"
-            hint: "The optional extras list. Put a price in, or leave it as Ask."
+            hint: "Every extra, with its price. These feed the price calculator and the booking form."
             fields:
-              - { name: name, label: "Add-on", widget: string }
-              - { name: price, label: "Price", widget: string, hint: "e.g. $45, or Ask" }
+              - { name: name, label: "Name", widget: string }
+              - { name: price, label: "Price (number only)", widget: string, hint: "Just the number. Use 0 if it is free." }
+              - name: unit
+                label: "Charged"
+                widget: select
+                default: "each"
+                options:
+                  - { label: "Each - renter picks how many", value: "each" }
+                  - { label: "Per person", value: "person" }
+                  - { label: "Per person, per day", value: "person-day" }
+                  - { label: "One flat charge", value: "flat" }
+              - { name: note, label: "Small print under the name", widget: string, required: false }
       - name: availability
         label: "Booked dates"
         file: content/availability.json

@@ -4,10 +4,10 @@
   "book_side_heading": "Request your dates.",
   "book_side_text": "Every rental to date has begun with a call or a text. Inquiries reach the owner directly and are answered in person rather than routed through a form.",
   "rules_heading": "Rental requirements.",
-  "rule_driver": "A valid standard driver's license is sufficient; no CDL is required. Additional drivers must be named on the rental agreement.",
-  "rule_insurance": "Proof of insurance required before pickup.",
-  "rule_smoking": "Smoking and vaping are prohibited inside the vehicle at all times. A violation forfeits the security deposit.",
-  "rule_pets": "Pet friendly &mdash; dogs welcome with a $125 fee. No cats.",
-  "rule_generator": "6 generator hours / day included. Campground quiet hours, typically 10pm–7am, must be observed.",
-  "rule_return": "6 PM end time. A 90-minute grace period applies, after which $50 per hour or part hour is charged."
+  "rule_driver": "Every driver must be 25 or older, named on the rental agreement, and bring a current valid driver's licence to the handoff. No CDL is needed.",
+  "rule_insurance": "Insurance is included and charged at $49 a day &mdash; a $500,000 policy. On a claim you cover the deductible, up to $1,000. You keep your own AAA roadside cover.",
+  "rule_smoking": "No smoking or vaping inside at any time. No roof access and no climbing the ladder.",
+  "rule_pets": "Dogs welcome, limit two, $125. That covers cleaning only &mdash; damage is separate. No cats.",
+  "rule_generator": "4 generator hours a day are included, then $4 an hour. Campground quiet hours, usually 10pm to 7am, still apply.",
+  "rule_return": "Back at the agreed time, emptied of your belongings and trash. A late return is $200. Fuel, propane, extra miles and generator hours are settled then."
 }

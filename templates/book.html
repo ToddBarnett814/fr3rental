@@ -26,7 +26,7 @@
 "url":"{{site_url}}",
 "image":"{{site_url}}/{{hero_image}}",
 "address":{"@type":"PostalAddress","addressLocality":"{{city}}"},
-"priceRange":"{{rate1_price}}-{{rate3_price}} per night"
+"priceRange":"${{rate_day}} per day"
 }</script>
 <script>document.documentElement.className+=" js";</script>
 </head>
@@ -84,7 +84,6 @@
       <div class="cal-readout" id="calReadout"><span>Pick your pickup and return dates above.</span></div>
       <a href="sms:{{phone_link}}?&body=Hi!%20I'd%20like%20to%20check%20availability%20for%20the%20FR3%20motorhome." class="btn btn-primary btn-block" id="calTextBtn" style="margin-top:16px">Send these dates to the owner</a>
     </div>
-
     <div class="reveal reveal-d1">
       <span class="eyebrow">Booking</span>
       <h2 style="margin:.3em 0 .5em">{{book_side_heading}}</h2>
@@ -118,13 +117,6 @@
               <label><input type="radio" name="handoff" value="Pick up from owner" checked> Pick up</label>
               <label><input type="radio" name="handoff" value="Delivery requested"> Deliver to me</label>
             </div>
-          </div>
-          <div class="field">
-            <label>Add-ons you&rsquo;d like</label>
-            <div class="addon-row">
-{{addons_checkboxes}}
-            </div>
-            <p class="form-note">Nothing is charged here. The owner confirms what&rsquo;s available and what it costs when he gets back to you.</p>
           </div>
           <div class="field"><label for="bNotes">Additional details</label><textarea id="bNotes" name="details" placeholder="Destination, pets, questions…"></textarea></div>
           <button type="submit" class="btn btn-pine btn-block">Send booking request</button>

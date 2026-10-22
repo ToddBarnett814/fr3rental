@@ -231,6 +231,7 @@ var BOOKED_RANGES = {{booked_ranges}};
         var bs = $("#bStart"), be = $("#bEnd");
         if (bs) bs.value = key(start);
         if (be) be.value = key(end);
+
       } else if (start) {
         readout.innerHTML = fmt(start) + " <span>· now pick your return date</span>";
       } else {
@@ -241,6 +242,107 @@ var BOOKED_RANGES = {{booked_ranges}};
     $("#calPrev").addEventListener("click", function () { view.setMonth(view.getMonth() - 1); render(); });
     $("#calNext").addEventListener("click", function () { view.setMonth(view.getMonth() + 1); render(); });
     render(); update();
+  }
+
+
+  /* ---------------------------------------------------------------- price calculator */
+  var calcBox = $("#calc");
+  if (calcBox && window.RATES) {
+    var N = RATES.nums, ADD = RATES.addons || [];
+    var elDays = $("#cDays"), elPpl = $("#cPpl"), elPets = $("#cPets"),
+        elMiles = $("#cMiles"), elAdd = $("#cAddons"), elOut = $("#cOut");
+
+    var UNIT = { each: "each", person: "per person", "person-day": "per person, per day", flat: "" };
+
+    function usd(n) {
+      var d = n % 1 === 0 ? 0 : 2;
+      return "$" + n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+    }
+
+    /* build a quantity box per add-on. Free ones are listed, not counted. */
+    ADD.forEach(function (a, i) {
+      var row = document.createElement("label");
+      row.className = "calc-add";
+      var free = !a.price;
+      var unit = UNIT[a.unit] || "";
+      row.innerHTML =
+        '<span class="n">' + a.name +
+        (a.note ? '<span class="sub">' + a.note + "</span>" : "") + "</span>" +
+        '<span class="pr">' + (free ? "Included" : usd(a.price) + (unit ? " " + unit : "")) + "</span>";
+      if (free) {
+        row.classList.add("free");
+      } else if (a.unit === "each") {
+        row.innerHTML += '<input type="number" class="qty" min="0" max="40" value="0" data-i="' + i + '">';
+      } else {
+        row.innerHTML += '<input type="checkbox" class="tick" data-i="' + i + '">';
+      }
+      elAdd.appendChild(row);
+    });
+
+    function lineFor(a, on, days, people) {
+      if (!a.price || !on) return 0;
+      if (a.unit === "each") return a.price * on;
+      if (a.unit === "person") return a.price * people;
+      if (a.unit === "person-day") return a.price * people * days;
+      return a.price;
+    }
+
+    function row(label, value, cls) {
+      return '<li class="' + (cls || "") + '"><span class="k">' + label +
+             '</span><span class="v">' + value + "</span></li>";
+    }
+
+    function recalc() {
+      var days = Math.max(1, parseInt(elDays.value, 10) || 1);
+      var people = Math.max(1, parseInt(elPpl.value, 10) || 1);
+      var pets = elPets.value === "1";
+      var miles = Math.max(0, parseInt(elMiles.value, 10) || 0);
+
+      var html = "";
+      var subtotal = 0;
+
+      var rate = N.rate_day * days;
+      subtotal += rate;
+      html += row(usd(N.rate_day) + " &times; " + days + " day" + (days === 1 ? "" : "s"), usd(rate));
+
+      var ins = N.fee_insurance_day * days;
+      subtotal += ins;
+      html += row("Insurance, " + usd(N.fee_insurance_day) + "/day", usd(ins));
+
+      [["Prep fee", N.fee_prep], ["Dump and flush", N.fee_dump], ["Cleaning", N.fee_cleaning]]
+        .forEach(function (f) { subtotal += f[1]; html += row(f[0], usd(f[1])); });
+
+      if (pets) { subtotal += N.fee_pet; html += row("Dogs", usd(N.fee_pet)); }
+
+      if (miles) {
+        var del = N.fee_delivery_mile * miles;
+        subtotal += del;
+        html += row("Delivery, " + miles + " miles", usd(del));
+      }
+
+      $$(".calc-add .qty, .calc-add .tick", elAdd).forEach(function (inp) {
+        var a = ADD[+inp.dataset.i];
+        var on = inp.type === "checkbox" ? (inp.checked ? 1 : 0) : (parseInt(inp.value, 10) || 0);
+        var amt = lineFor(a, on, days, people);
+        if (!amt) return;
+        subtotal += amt;
+        var qty = a.unit === "each" ? on + " &times; " : "";
+        html += row(qty + a.name, usd(amt));
+      });
+
+      html += row("Subtotal", usd(subtotal), "tot");
+      html += row("Security deposit (refundable)", usd(N.fee_deposit));
+
+      var hold = Math.floor((N.rate_day / 2) * days);
+      html += row("Due at signing, nonrefundable", "&minus; " + usd(hold));
+      html += row("Due at handoff", usd(subtotal + N.fee_deposit - hold), "tot big");
+
+      elOut.innerHTML = html;
+    }
+
+    calcBox.addEventListener("input", recalc);
+    calcBox.addEventListener("change", recalc);
+    recalc();
   }
 
   /* forms post directly to Netlify Forms — no JS needed */

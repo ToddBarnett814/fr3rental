@@ -18,7 +18,7 @@ TEMPLATES = os.path.join(HERE, "templates")
 PAGES = [
     "index.html", "the-rv.html", "rates.html", "book.html", "faq.html",
     "contact.html", "legal.html", "thanks.html", "404.html", "script.js",
-    "edit.js",
+    "edit.js", "agreement.html", "agreement.js",
 ]
 
 # pages listed in sitemap.xml (not 404 / thanks / the script)
@@ -42,28 +42,74 @@ def load_content():
     return flat
 
 
+def num(v):
+    """'2.50' -> 2.5, anything unparseable -> 0."""
+    try:
+        return float(str(v).replace("$", "").replace(",", "").strip())
+    except (TypeError, ValueError):
+        return 0.0
+
+
 def derived(content):
     """Fields that are built from a list the editor manages."""
     out = {}
 
     rows = content.get("addons") or []
-    out["addons_html"] = "\n".join(
-        '        <li>%s<b>%s</b></li>' % (r.get("name", ""), r.get("price", ""))
-        for r in rows
-    )
 
-    # the same list, as tick boxes on the booking form
+    UNIT_LABEL = {
+        "each": "each",
+        "person": "per person",
+        "person-day": "per person, per day",
+        "flat": "",
+    }
+
+    def money(v):
+        try:
+            f = float(v)
+        except (TypeError, ValueError):
+            return str(v)
+        return ("$%.2f" % f).replace(".00", "")
+
+    # the printed list on the rates page
+    lines = []
+    for r in rows:
+        price = money(r.get("price", ""))
+        if str(r.get("price", "")).strip() in ("0", "0.00", ""):
+            price = "Included"
+        unit = UNIT_LABEL.get(r.get("unit", "flat"), "")
+        lines.append('        <li>%s<b>%s%s</b></li>'
+                     % (r.get("name", ""), price, (" " + unit) if unit else ""))
+    out["addons_html"] = "\n".join(lines)
+
+    # tick boxes on the booking form
     boxes = []
     for r in rows:
         name = r.get("name", "")
-        price = r.get("price", "")
-        tail = ' <span class="p">%s</span>' % price if price else ""
+        if str(r.get("price", "")).strip() in ("0", "0.00", ""):
+            continue  # free, nothing to request
+        price = money(r.get("price", ""))
+        unit = UNIT_LABEL.get(r.get("unit", "flat"), "")
+        tail = ' <span class="p">%s%s</span>' % (price, (" " + unit) if unit else "")
         boxes.append(
             '            <label><input type="checkbox" name="addons" value="%s">'
             '<span>%s</span>%s</label>'
             % (name.replace('"', "&quot;"), name, tail)
         )
     out["addons_checkboxes"] = "\n".join(boxes)
+
+    # everything the price calculator needs, as one blob
+    keys = ("rate_day", "fee_insurance_day", "fee_prep", "fee_dump", "fee_cleaning",
+            "fee_deposit", "fee_pet", "fee_delivery_mile",
+            "miles_per_day", "miles_extra", "gen_hours_per_day", "gen_extra",
+            "fuel_gal", "propane_gal", "fee_late", "fee_excess_clean")
+    out["rates_json"] = json.dumps({
+        "nums": {k: num(content.get(k)) for k in keys},
+        "addons": [
+            {"name": r.get("name", ""), "price": num(r.get("price")),
+             "unit": r.get("unit", "flat"), "note": r.get("note", "")}
+            for r in rows
+        ],
+    })
 
     for key in ("legal_terms", "legal_cancellation", "legal_privacy"):
         text = content.get(key, "")
