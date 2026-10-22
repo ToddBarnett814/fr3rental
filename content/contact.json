@@ -1,12 +1,12 @@
 {
-  "phone_display": "(661) 733-5757",
-  "phone_link": "+16617335757",
-  "email": "toddcbarnett@yahoo.com",
-  "city": "Redlands, CA",
-  "business_name": "Barnett Motorhome Rentals",
-  "logo_name": "Barnett Motorhome",
-  "logo_tagline": "Class A rentals",
-  "footer_blurb": "A privately owned Class A motorhome available for rental in Redlands, California. Inquiries are handled directly by the owner.",
   "footer_smallprint": "Rates and availability subject to change. Gallery photos are of the actual RV.",
-  "contact_strip": "To check availability or request a quote:"
+  "business_name": "Bunkhouse Vacations",
+  "phone_link": "+16617335757",
+  "city": "Redlands, CA",
+  "phone_display": "(661) 733-5757",
+  "footer_blurb": "A privately owned Class A motorhome available for rental in Redlands, California. Inquiries are handled directly by the owner.",
+  "contact_strip": "To check availability or request a quote:",
+  "logo_tagline": "Class A rentals",
+  "email": "toddcbarnett@yahoo.com",
+  "logo_name": "Bunkhouse Vacations"
 }
