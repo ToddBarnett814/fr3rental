@@ -29,6 +29,7 @@
     "book":    [["book", "Availability page text"], ["availability", "Booked dates"]],
     "contact": [["contactpage", "Contact page text"]],
     "legal":   [["legal", "Legal page text"]],
+    "agreement": [["agreement", "Rental agreement wording"], ["rates", "Rates, fees and add-ons"]],
     "faq":     []
   };
 
@@ -75,6 +76,10 @@
   }
   if (page === "faq") {
     html += '<div class="note">The FAQ questions are not editable yet &mdash; ask Cole.</div>';
+  }
+  if (page !== "agreement") {
+    html += '<div class="hd">Owner tools</div>';
+    html += '<a href="agreement.html">Start a rental agreement</a>';
   }
   html += '<div class="off" id="bmr-edit-off">Turn off edit mode</div>';
   panel.innerHTML = html;
