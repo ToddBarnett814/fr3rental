@@ -272,7 +272,7 @@ var BOOKED_RANGES = {{booked_ranges}};
       if (free) {
         row.classList.add("free");
       } else if (a.unit === "each") {
-        row.innerHTML += '<input type="number" class="qty" min="0" max="40" value="0" data-i="' + i + '">';
+        row.innerHTML += '<input type="number" class="qty" min="0" max="' + (a.max || 20) + '" value="0" data-i="' + i + '">';
       } else {
         row.innerHTML += '<input type="checkbox" class="tick" data-i="' + i + '">';
       }

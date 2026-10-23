@@ -87,7 +87,7 @@
       '<span class="n">' + a.name + (a.note ? '<span class="sub">' + a.note + "</span>" : "") + "</span>" +
       '<span class="pr">' + usd(a.price) + (unit ? " " + unit : "") + "</span>";
     row.innerHTML += a.unit === "each"
-      ? '<input type="number" class="qty" min="0" max="40" value="0" data-i="' + i + '">'
+      ? '<input type="number" class="qty" min="0" max="' + (a.max || 20) + '" value="0" data-i="' + i + '">'
       : '<input type="checkbox" class="tick" data-i="' + i + '">';
     $("#aAddons").appendChild(row);
   });
@@ -106,9 +106,23 @@
     syncCharged();
     var from = $("#aFrom").value || handoff, to = $("#aTo").value || ret;
 
-    var heldDays = dayCount(handoff, ret) || 1;   // how long they have it
+    var heldDays = dayCount(handoff, ret);        // how long they have it
     var days = dayCount(from, to) || heldDays;    // what he is charging for
+
+    /* nothing is worth showing until the dates make sense */
+    if (!heldDays) {
+      $("#dTable").querySelector("tbody").innerHTML =
+        "<tr><td colspan='3' class='n'>" +
+        (handoff && ret ? "The return date is before the handoff date."
+                        : "Fill in the handoff and return dates above.") +
+        "</td></tr>";
+      ["#dCharged", "#dNote", "#dIncl"].forEach(function (id) { $(id).textContent = ""; });
+      $("#dReturnFees").innerHTML = "";
+      return;
+    }
+
     var freeDays = Math.max(0, heldDays - days);
+    var overcharged = days > heldDays;
 
     var rate = parseFloat($("#aRate").value) || N.rate_day;
     var genDay = parseFloat($("#aGen").value);
@@ -131,13 +145,18 @@
     $("#dDates2").textContent = handoff && ret
       ? pretty(handoff) + " to " + pretty(ret) : "the dates above";
 
-    $("#dCharged").textContent = freeDays
-      ? "CHARGED: " + pretty(from) + " to " + pretty(to) + "   \u00b7   " + days +
-        " rental day" + (days === 1 ? "" : "s") + ".   " + freeDays + " day" +
-        (freeDays === 1 ? "" : "s") + " at no charge."
-      : "";
+    $("#dCharged").textContent =
+      overcharged
+        ? "CHECK THESE DATES: charging " + days + " days but the RV is only out for " + heldDays + "."
+      : freeDays
+        ? "CHARGED: " + pretty(from) + " to " + pretty(to) + "   \u00b7   " + days +
+          " rental day" + (days === 1 ? "" : "s") + ".   " + freeDays + " day" +
+          (freeDays === 1 ? "" : "s") + " at no charge."
+        : "";
+    $("#dCharged").style.color = overcharged ? "#b0562f" : "";
+    $("#dCharged").style.fontWeight = overcharged ? "700" : "";
 
-    $("#dIncl").textContent = days + " rental day" + (days === 1 ? "" : "s") + " include " +
+    $("#dIncl").textContent = days + " rental day" + (days === 1 ? " includes " : "s include ") +
       (days * miDay) + " miles and " + (days * genDay) + " generator hours." +
       (freeDays ? " The " + freeDays + " extra day" + (freeDays === 1 ? "" : "s") +
        " of possession carry no charge and no additional allowance." : "");

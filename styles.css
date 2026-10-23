@@ -670,3 +670,6 @@ h4{font-size:1.1rem}
   @page{margin:.6in .7in}
 }
 .ag-note{font-size:.85rem;color:var(--ink-55);margin:6px 0 0;font-style:italic}
+.ag-spec p{font-size:.84rem;line-height:1.5;margin:0 0 7px}
+.ag-spec b{font-weight:700}
+.ag-small{font-size:.84rem;line-height:1.5}

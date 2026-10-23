@@ -430,6 +430,7 @@ collections:
                   - { label: "Per person, per day", value: "person-day" }
                   - { label: "One flat charge", value: "flat" }
               - { name: note, label: "Small print under the name", widget: string, required: false }
+              - { name: max, label: "Most they can ask for", widget: string, required: false, hint: "How many you own. Leave blank for no limit." }
       - name: availability
         label: "Booked dates"
         file: content/availability.json

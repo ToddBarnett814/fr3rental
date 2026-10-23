@@ -106,7 +106,8 @@ def derived(content):
         "nums": {k: num(content.get(k)) for k in keys},
         "addons": [
             {"name": r.get("name", ""), "price": num(r.get("price")),
-             "unit": r.get("unit", "flat"), "note": r.get("note", "")}
+             "unit": r.get("unit", "flat"), "note": r.get("note", ""),
+             "max": int(num(r.get("max"))) or 20}
             for r in rows
         ],
     })

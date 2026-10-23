@@ -24,61 +24,71 @@
       "name": "Bedding",
       "price": "50",
       "unit": "person",
-      "note": "Pillow, sheets, blanket or comforter"
+      "note": "Pillow, sheets, blanket or comforter",
+      "max": ""
     },
     {
       "name": "Towel &amp; wash cloth",
       "price": "5",
       "unit": "each",
-      "note": ""
+      "note": "",
+      "max": ""
     },
     {
       "name": "Lawn chairs",
       "price": "7",
       "unit": "each",
-      "note": ""
+      "note": "",
+      "max": "10"
     },
     {
       "name": "Table",
       "price": "20",
-      "unit": "each",
-      "note": ""
+      "unit": "flat",
+      "note": "",
+      "max": ""
     },
     {
       "name": "Ice chest (60-qt)",
       "price": "20",
-      "unit": "each",
-      "note": ""
+      "unit": "flat",
+      "note": "",
+      "max": ""
     },
     {
       "name": "EZ-up",
       "price": "20",
-      "unit": "each",
-      "note": ""
+      "unit": "flat",
+      "note": "",
+      "max": ""
     },
     {
       "name": "Patio rug (9 x 12 ft)",
       "price": "20",
-      "unit": "each",
-      "note": ""
+      "unit": "flat",
+      "note": "",
+      "max": ""
     },
     {
       "name": "Gas BBQ grill",
       "price": "55",
       "unit": "flat",
-      "note": "Runs off the RV propane line &mdash; no canister or charcoal needed"
+      "note": "Runs off the RV propane line &mdash; no canister or charcoal needed",
+      "max": ""
     },
     {
       "name": "Supplies",
       "price": "2.50",
       "unit": "person-day",
-      "note": "Cleaning spray, dish and hand soap, tank pods, toilet paper, paper towels"
+      "note": "Cleaning spray, dish and hand soap, tank pods, toilet paper, paper towels",
+      "max": ""
     },
     {
       "name": "Kitchenware",
       "price": "0",
       "unit": "flat",
-      "note": "Included at no charge"
+      "note": "Included at no charge",
+      "max": ""
     }
   ]
 }
