@@ -29,6 +29,7 @@
     "book":    [["book", "Availability page text"], ["availability", "Booked dates"]],
     "contact": [["contactpage", "Contact page text"]],
     "legal":   [["legal", "Legal page text"]],
+    "agreement": [["agreement", "Rental agreement wording"], ["rates", "Rates, fees and add-ons"]],
     "faq":     []
   };
 
