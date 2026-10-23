@@ -14,6 +14,10 @@
   var N = RATES.nums, ADD = RATES.addons || [];
   var UNIT = { each: "", person: "per person", "person-day": "per person, per day", flat: "" };
 
+  var WORDS = ["zero","one","two","three","four","five","six","seven","eight","nine","ten",
+               "eleven","twelve","thirteen","fourteen"];
+  function spell(n) { return WORDS[n] || String(n); }
+
   function usd(n) {
     var d = n % 1 === 0 ? 0 : 2;
     return "$" + n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -213,6 +217,39 @@
     rows.push("<tr class='sum big'><td>Due at handoff</td><td class='n'>Including the security deposit</td><td class='a'>" + usd(balance) + "</td></tr>");
 
     $("#dTable").querySelector("tbody").innerHTML = rows.join("");
+
+    /* Sections 2, 5 and 7 word-for-word from Todd's agreement, with this
+       trip's figures dropped in where his had the Nottingham ones. */
+    var subPlusDep = subtotal + N.fee_deposit;
+
+    $("#dCharges").innerHTML =
+      "The initial subtotal is " + usd(subtotal) + ", plus a " + usd(N.fee_deposit) +
+      " refundable security deposit, for " + usd(subPlusDep) + " before additional charges. The " +
+      usd(hold) + " nonrefundable reservation deposit (half the " + usd(rate * days) +
+      " rental rate, rounded down to the nearest dollar) is due at signing and credited toward " +
+      "that amount, leaving " + usd(balance) + " due at handoff. Optional items are charged only " +
+      "as selected and recorded. Additional fuel, mileage, generator use, propane, tolls, damage, " +
+      "and other applicable charges are due on return.";
+
+    $("#dIns").innerHTML =
+      "Insurance is charged at " + usd(N.fee_insurance_day) + " per day for " + spell(days) + " day" +
+      (days === 1 ? "" : "s") + " (" + usd(N.fee_insurance_day * days) + "), subject to policy " +
+      "terms and claim decisions; the stated policy limit is $500,000. For each separate covered " +
+      "loss for which Renter is responsible, Renter will reimburse the applicable deductible, up " +
+      "to $1,000 per event, and any responsible loss insurance does not pay. Owner may deduct " +
+      "documented damage not covered by insurance and other unpaid amounts due under this " +
+      "agreement from the " + usd(N.fee_deposit) + " security deposit. Owner will provide an " +
+      "itemized accounting and return the unused balance after inspection and reconciliation; no " +
+      "charge will be collected twice.";
+
+    $("#dReturn").innerHTML =
+      "Return the RV at the agreed time, remove belongings and trash, and leave its systems as " +
+      "instructed. The " + usd(N.fee_cleaning) + " cleaning fee is refundable if returned clean; " +
+      "the " + usd(N.fee_dump) + " dump/flush fee applies. An additional " +
+      usd(N.fee_excess_clean) + " excess cleaning fee applies if necessary. Pet fees cover " +
+      "cleaning only; pet damage remains Renter\u2019s responsibility. Record return fuel, " +
+      "propane, odometer, and generator readings. Additional charges follow the table above, " +
+      "including the " + usd(N.fee_late) + " late return fee if returned late.";
 
     var note = $("#aNotes").value.trim();
     $("#dNote").textContent = note ? "Note: " + note : "";
