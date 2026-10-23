@@ -77,6 +77,10 @@
   if (page === "faq") {
     html += '<div class="note">The FAQ questions are not editable yet &mdash; ask Cole.</div>';
   }
+  if (page !== "agreement") {
+    html += '<div class="hd">Owner tools</div>';
+    html += '<a href="agreement.html">Start a rental agreement</a>';
+  }
   html += '<div class="off" id="bmr-edit-off">Turn off edit mode</div>';
   panel.innerHTML = html;
 
