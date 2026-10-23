@@ -36,9 +36,24 @@
       <div class="field"><label for="aHandoffT">Handoff time</label><input type="time" id="aHandoffT" value="07:00"></div>
       <div class="field"><label for="aReturn">Return date</label><input type="date" id="aReturn"></div>
       <div class="field"><label for="aReturnT">Return time</label><input type="time" id="aReturnT" value="17:00"></div>
-      <div class="field"><label for="aRate">Agreed daily rate</label><input type="number" id="aRate" min="0" step="1" value="{{rate_day}}"></div>
-      <div class="field"><label>&nbsp;</label><button type="button" class="btn btn-ghost btn-sm btn-block" id="aLink">Copy link for the renter</button></div>
     </div>
+
+    <h2 class="ag-h" style="margin-top:18px">Days you are charging for</h2>
+    <p class="small muted">Leave these the same as above unless you are letting them pick it up early or bring it back late at no charge.</p>
+    <div class="ag-grid">
+      <div class="field"><label for="aFrom">Charging from</label><input type="date" id="aFrom"></div>
+      <div class="field"><label for="aTo">Charging to</label><input type="date" id="aTo"></div>
+    </div>
+
+    <h2 class="ag-h" style="margin-top:18px">Rate and allowances</h2>
+    <div class="ag-grid">
+      <div class="field"><label for="aRate">Agreed daily rate</label><input type="number" id="aRate" min="0" step="1" value="{{rate_day}}"></div>
+      <div class="field"><label for="aGen">Generator hours a day</label><input type="number" id="aGen" min="0" step="1" value="{{gen_hours_per_day}}"></div>
+      <div class="field"><label for="aMi">Miles a day</label><input type="number" id="aMi" min="0" step="10" value="{{miles_per_day}}"></div>
+    </div>
+    <div class="field"><label for="aNotes">Notes on the rate</label>
+      <input type="text" id="aNotes" placeholder="Discounted from $319. Extra generator hours included."></div>
+    <button type="button" class="btn btn-ghost btn-sm" id="aLink">Copy link for the renter</button>
     <p class="small muted" id="aLinkMsg" style="display:none">Link copied. Send it to the renter.</p>
   </section>
 
@@ -72,6 +87,7 @@
 
     <input type="hidden" name="trip_dates" id="hDates">
     <input type="hidden" name="daily_rate" id="hRate">
+    <input type="hidden" name="rate_notes" id="hNotes">
     <input type="hidden" name="addons_chosen" id="hAddons">
     <input type="hidden" name="subtotal" id="hSubtotal">
     <input type="hidden" name="due_at_signing" id="hHold">
@@ -87,6 +103,7 @@
       <h1>2020 Forest River FR3 32DS Rental Agreement</h1>
       <p class="ag-party" id="dName">&mdash;</p>
       <p class="ag-dates" id="dDates">&mdash;</p>
+      <p class="ag-dates" id="dCharged"></p>
     </div>
 
     <ul class="ag-rules">
@@ -96,6 +113,7 @@
 
     <h2>Charges</h2>
     <table class="ag-table" id="dTable"><tbody></tbody></table>
+    <p class="ag-note" id="dNote"></p>
 
     <h2>Rental terms</h2>
     <p>These terms are the agreement between {{business_name}} (Owner) and <b id="dName2">the Renter</b> for the 2020 Forest River FR3 32DS, <span id="dDates2">the dates above</span>.</p>

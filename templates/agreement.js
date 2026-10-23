@@ -12,7 +12,7 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
   var N = RATES.nums, ADD = RATES.addons || [];
-  var UNIT = { each: "each", person: "per person", "person-day": "per person, per day", flat: "" };
+  var UNIT = { each: "", person: "per person", "person-day": "per person, per day", flat: "" };
 
   function usd(n) {
     var d = n % 1 === 0 ? 0 : 2;
@@ -40,16 +40,37 @@
 
   /* ---------------------------------------------------------- owner link */
   var q = new URLSearchParams(location.search);
-  ["h", "ht", "r", "rt", "rate"].forEach(function (k) {
-    var el = { h: "#aHandoff", ht: "#aHandoffT", r: "#aReturn", rt: "#aReturnT", rate: "#aRate" }[k];
-    if (q.get(k)) $(el).value = q.get(k);
+  var PARAMS = {
+    h: "#aHandoff", ht: "#aHandoffT", r: "#aReturn", rt: "#aReturnT",
+    f: "#aFrom", t: "#aTo", rate: "#aRate", gen: "#aGen", mi: "#aMi", n: "#aNotes"
+  };
+  Object.keys(PARAMS).forEach(function (k) {
+    if (q.get(k)) $(PARAMS[k]).value = q.get(k);
   });
   if (q.get("h") && q.get("r")) $("#agSetup").style.display = "none";
 
+  /* charged dates default to the handoff dates */
+  function syncCharged() {
+    if (!$("#aFrom").value) $("#aFrom").value = $("#aHandoff").value;
+    if (!$("#aTo").value) $("#aTo").value = $("#aReturn").value;
+  }
+  $("#aHandoff").addEventListener("change", function () {
+    if (!q.get("f")) $("#aFrom").value = this.value;
+  });
+  $("#aReturn").addEventListener("change", function () {
+    if (!q.get("t")) $("#aTo").value = this.value;
+  });
+  syncCharged();
+
   $("#aLink").addEventListener("click", function () {
-    var u = location.origin + location.pathname + "?h=" + $("#aHandoff").value +
-            "&ht=" + $("#aHandoffT").value + "&r=" + $("#aReturn").value +
-            "&rt=" + $("#aReturnT").value + "&rate=" + $("#aRate").value;
+    syncCharged();
+    var u = location.origin + location.pathname +
+            "?h=" + $("#aHandoff").value + "&ht=" + $("#aHandoffT").value +
+            "&r=" + $("#aReturn").value + "&rt=" + $("#aReturnT").value +
+            "&f=" + $("#aFrom").value + "&t=" + $("#aTo").value +
+            "&rate=" + $("#aRate").value +
+            "&gen=" + $("#aGen").value + "&mi=" + $("#aMi").value +
+            "&n=" + encodeURIComponent($("#aNotes").value);
     if (navigator.clipboard) navigator.clipboard.writeText(u);
     var m = $("#aLinkMsg");
     m.textContent = "Link copied: " + u;
@@ -82,8 +103,18 @@
   /* ---------------------------------------------------------- fill it in */
   function render() {
     var handoff = $("#aHandoff").value, ret = $("#aReturn").value;
-    var days = dayCount(handoff, ret) || 1;
+    syncCharged();
+    var from = $("#aFrom").value || handoff, to = $("#aTo").value || ret;
+
+    var heldDays = dayCount(handoff, ret) || 1;   // how long they have it
+    var days = dayCount(from, to) || heldDays;    // what he is charging for
+    var freeDays = Math.max(0, heldDays - days);
+
     var rate = parseFloat($("#aRate").value) || N.rate_day;
+    var genDay = parseFloat($("#aGen").value);
+    if (isNaN(genDay)) genDay = N.gen_hours_per_day;
+    var miDay = parseFloat($("#aMi").value);
+    if (isNaN(miDay)) miDay = N.miles_per_day;
     var people = Math.max(1, parseInt($("#aPpl").value, 10) || 1);
     var pets = $("#aPets").value === "1";
     var miles = Math.max(0, parseInt($("#aMiles").value, 10) || 0);
@@ -100,8 +131,16 @@
     $("#dDates2").textContent = handoff && ret
       ? pretty(handoff) + " to " + pretty(ret) : "the dates above";
 
+    $("#dCharged").textContent = freeDays
+      ? "CHARGED: " + pretty(from) + " to " + pretty(to) + "   \u00b7   " + days +
+        " rental day" + (days === 1 ? "" : "s") + ".   " + freeDays + " day" +
+        (freeDays === 1 ? "" : "s") + " at no charge."
+      : "";
+
     $("#dIncl").textContent = days + " rental day" + (days === 1 ? "" : "s") + " include " +
-      (days * N.miles_per_day) + " miles and " + (days * N.gen_hours_per_day) + " generator hours.";
+      (days * miDay) + " miles and " + (days * genDay) + " generator hours." +
+      (freeDays ? " The " + freeDays + " extra day" + (freeDays === 1 ? "" : "s") +
+       " of possession carry no charge and no additional allowance." : "");
 
     /* ---- the table ---- */
     var rows = [], subtotal = 0;
@@ -112,6 +151,11 @@
 
     subtotal += rate * days;
     line("Rate", usd(rate) + "/day &times; " + days, rate * days);
+
+    if (freeDays) {
+      line("Early pickup / late return", freeDays + " day" + (freeDays === 1 ? "" : "s") +
+           " of possession, not charged", 0);
+    }
 
     subtotal += N.fee_insurance_day * days;
     line("Insurance", usd(N.fee_insurance_day) + "/day &times; " + days + ", $500,000 policy", N.fee_insurance_day * days);
@@ -151,20 +195,26 @@
 
     $("#dTable").querySelector("tbody").innerHTML = rows.join("");
 
+    var note = $("#aNotes").value.trim();
+    $("#dNote").textContent = note ? "Note: " + note : "";
+    $("#dNote").style.display = note ? "block" : "none";
+
     /* ---- settled on return ---- */
     $("#dReturnFees").innerHTML = [
       "Fuel at " + usd(N.fuel_gal) + " a gallon for what is used.",
       "Propane at " + usd(N.propane_gal) + " a gallon for what is used.",
-      "Miles over " + (days * N.miles_per_day) + " at " + usd(N.miles_extra) + " a mile.",
-      "Generator hours over " + (days * N.gen_hours_per_day) + " at " + usd(N.gen_extra) + " an hour.",
+      "Miles over " + (days * miDay) + " at " + usd(N.miles_extra) + " a mile.",
+      "Generator hours over " + (days * genDay) + " at " + usd(N.gen_extra) + " an hour.",
       "Toll roads, recorded by the transponder.",
       "Late return, " + usd(N.fee_late) + ". Excess cleaning, " + usd(N.fee_excess_clean) + ", if needed.",
     ].map(function (t) { return "<li>" + t + "</li>"; }).join("");
 
     /* ---- what gets emailed ---- */
     $("#hDates").value = dates;
-    $("#hRate").value = usd(rate) + "/day x " + days + " days";
+    $("#hRate").value = usd(rate) + "/day x " + days + " days" +
+      (freeDays ? " (plus " + freeDays + " free)" : "");
     $("#hAddons").value = chosen.join(", ") || "none";
+    $("#hNotes").value = note;
     $("#hSubtotal").value = usd(subtotal);
     $("#hHold").value = usd(hold);
     $("#hBalance").value = usd(balance);

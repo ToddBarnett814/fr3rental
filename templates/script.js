@@ -252,7 +252,7 @@ var BOOKED_RANGES = {{booked_ranges}};
     var elDays = $("#cDays"), elPpl = $("#cPpl"), elPets = $("#cPets"),
         elMiles = $("#cMiles"), elAdd = $("#cAddons"), elOut = $("#cOut");
 
-    var UNIT = { each: "each", person: "per person", "person-day": "per person, per day", flat: "" };
+    var UNIT = { each: "", person: "per person", "person-day": "per person, per day", flat: "" };
 
     function usd(n) {
       var d = n % 1 === 0 ? 0 : 2;

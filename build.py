@@ -57,7 +57,7 @@ def derived(content):
     rows = content.get("addons") or []
 
     UNIT_LABEL = {
-        "each": "each",
+        "each": "",
         "person": "per person",
         "person-day": "per person, per day",
         "flat": "",
