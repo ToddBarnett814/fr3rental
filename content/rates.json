@@ -9,7 +9,7 @@
   "fee_deposit": "1500",
   "fee_deposit_note": "Refundable, returned after inspection.",
   "fee_pet": "125",
-  "fee_pet_note": "Limit 2 dogs. Covers cleaning only &mdash; damage is separate.",
+  "fee_pet_note": "Limit 2 dogs. Covers cleaning only — damage is separate.",
   "fee_delivery_mile": "5",
   "miles_per_day": "100",
   "miles_extra": "1",
@@ -28,7 +28,7 @@
       "max": ""
     },
     {
-      "name": "Towel &amp; wash cloth",
+      "name": "Towel & wash cloth",
       "price": "5",
       "unit": "each",
       "note": "",
@@ -73,7 +73,7 @@
       "name": "Gas BBQ grill",
       "price": "55",
       "unit": "flat",
-      "note": "Runs off the RV propane line &mdash; no canister or charcoal needed",
+      "note": "Runs off the RV propane line — no canister or charcoal needed",
       "max": ""
     },
     {
