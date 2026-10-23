@@ -5,8 +5,8 @@
    the bottom-right corner. The button lists what is editable on that
    page and links straight to that section of the editor.
 
-   It stays on for the rest of that browser tab and is invisible to
-   everyone else. Nothing here changes the site itself.
+   It stays on in this browser until he turns it off, and is invisible
+   to everyone else. Nothing here changes the site itself.
    ------------------------------------------------------------------ */
 (function () {
   var KEY = "bmrEditMode";
@@ -15,8 +15,8 @@
   var on = asked;
 
   try {
-    if (asked) sessionStorage.setItem(KEY, "1");
-    on = sessionStorage.getItem(KEY) === "1";
+    if (asked) localStorage.setItem(KEY, "1");
+    on = localStorage.getItem(KEY) === "1";
   } catch (e) { /* private browsing - fall back to the query string */ }
 
   if (!on) return;
@@ -106,7 +106,7 @@
     });
 
     document.getElementById("bmr-edit-off").addEventListener("click", function () {
-      try { sessionStorage.removeItem(KEY); } catch (e) { /* nothing to clear */ }
+      try { localStorage.removeItem(KEY); } catch (e) { /* nothing to clear */ }
       location.href = location.pathname;
     });
   }
