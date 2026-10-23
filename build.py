@@ -97,6 +97,15 @@ def derived(content):
         )
     out["addons_checkboxes"] = "\n".join(boxes)
 
+    # the agreement wording, so the page can drop this trip's figures into it
+    out["agreement_json"] = json.dumps({
+        "intro": content.get("ag_intro", ""),
+        "sections": [
+            {"h": content.get("ag_h%d" % i, ""), "body": content.get("ag_s%d" % i, "")}
+            for i in range(1, 9)
+        ],
+    })
+
     # everything the price calculator needs, as one blob
     keys = ("rate_day", "fee_insurance_day", "fee_prep", "fee_dump", "fee_cleaning",
             "fee_deposit", "fee_pet", "fee_delivery_mile",

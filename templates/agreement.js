@@ -137,8 +137,10 @@
         (handoff && ret ? "The return date is before the handoff date."
                         : "Fill in the handoff and return dates above.") +
         "</td></tr>";
-      ["#dCharged", "#dNote", "#dIncl", "#dPeriod"].forEach(function (id) { $(id).textContent = ""; });
+      ["#dCharged", "#dNote"].forEach(function (id) { $(id).textContent = ""; });
       $("#dReturnFees").innerHTML = "";
+      $("#dIntro").innerHTML = "";
+      $("#dTerms").innerHTML = "";
       return;
     }
 
@@ -156,14 +158,12 @@
 
     var name = $("#aName").value.trim();
     $("#dName").textContent = name || "—";
-    $("#dName2").textContent = name || "the Renter";
 
     var dates = handoff && ret
       ? "HANDOFF: " + pretty(handoff, $("#aHandoffT").value) +
         "   ·   RETURN: " + pretty(ret, $("#aReturnT").value)
       : "—";
     $("#dDates").textContent = dates;
-    $("#dDates2").textContent = range(handoff, ret);
 
     $("#dCharged").textContent =
       overcharged
@@ -175,16 +175,6 @@
         : "";
     $("#dCharged").style.color = overcharged ? "#b0562f" : "";
     $("#dCharged").style.fontWeight = overcharged ? "700" : "";
-
-    $("#dPeriod").textContent = handoff && ret
-      ? "Handoff is " + pretty(handoff) + "; return is " + pretty(ret) +
-        ", at the times entered on page 1."
-      : "";
-
-    $("#dIncl").textContent = cap(spell(days)) + " rental day" + (days === 1 ? " includes " : "s include ") +
-      (days * miDay) + " miles and " + (days * genDay) + " generator hours." +
-      (freeDays ? " The " + freeDays + " extra day" + (freeDays === 1 ? "" : "s") +
-       " of possession carry no charge and no additional allowance." : "");
 
     /* ---- the table ---- */
     var rows = [], subtotal = 0;
@@ -239,38 +229,40 @@
 
     $("#dTable").querySelector("tbody").innerHTML = rows.join("");
 
-    /* Sections 2, 5 and 7 word-for-word from Todd's agreement, with this
-       trip's figures dropped in where his had the Nottingham ones. */
-    var subPlusDep = subtotal + N.fee_deposit;
+    /* ---- the terms, filled in from what Todd typed in the editor ---- */
+    var V = {
+      owner: OWNER,
+      renter: name || "the Renter",
+      dates: range(handoff, ret),
+      handoff: pretty(handoff),
+      "return": pretty(ret),
+      days: cap(spell(days)),
+      days_in_words: spell(days),
+      miles: days * miDay,
+      generator: days * genDay,
+      subtotal: usd(subtotal),
+      deposit: usd(N.fee_deposit),
+      subtotal_and_deposit: usd(subtotal + N.fee_deposit),
+      reservation: usd(hold),
+      rental_rate: usd(rate * days),
+      balance: usd(balance),
+      insurance_day: usd(N.fee_insurance_day),
+      insurance_total: usd(N.fee_insurance_day * days),
+      cleaning: usd(N.fee_cleaning),
+      dump: usd(N.fee_dump),
+      excess_cleaning: usd(N.fee_excess_clean),
+      late: usd(N.fee_late)
+    };
+    function fill(t) {
+      return String(t).replace(/\[([a-z_]+)\]/g, function (m, k) {
+        return k in V ? V[k] : m;
+      });
+    }
 
-    $("#dCharges").innerHTML =
-      "The initial subtotal is " + usd(subtotal) + ", plus a " + usd(N.fee_deposit) +
-      " refundable security deposit, for " + usd(subPlusDep) + " before additional charges. The " +
-      usd(hold) + " nonrefundable reservation deposit (half the " + usd(rate * days) +
-      " rental rate, rounded down to the nearest dollar) is due at signing and credited toward " +
-      "that amount, leaving " + usd(balance) + " due at handoff. Optional items are charged only " +
-      "as selected and recorded. Additional fuel, mileage, generator use, propane, tolls, damage, " +
-      "and other applicable charges are due on return.";
-
-    $("#dIns").innerHTML =
-      "Insurance is charged at " + usd(N.fee_insurance_day) + " per day for " + spell(days) + " day" +
-      (days === 1 ? "" : "s") + " (" + usd(N.fee_insurance_day * days) + "), subject to policy " +
-      "terms and claim decisions; the stated policy limit is $500,000. For each separate covered " +
-      "loss for which Renter is responsible, Renter will reimburse the applicable deductible, up " +
-      "to $1,000 per event, and any responsible loss insurance does not pay. Owner may deduct " +
-      "documented damage not covered by insurance and other unpaid amounts due under this " +
-      "agreement from the " + usd(N.fee_deposit) + " security deposit. Owner will provide an " +
-      "itemized accounting and return the unused balance after inspection and reconciliation; no " +
-      "charge will be collected twice.";
-
-    $("#dReturn").innerHTML =
-      "Return the RV at the agreed time, remove belongings and trash, and leave its systems as " +
-      "instructed. The " + usd(N.fee_cleaning) + " cleaning fee is refundable if returned clean; " +
-      "the " + usd(N.fee_dump) + " dump/flush fee applies. An additional " +
-      usd(N.fee_excess_clean) + " excess cleaning fee applies if necessary. Pet fees cover " +
-      "cleaning only; pet damage remains Renter\u2019s responsibility. Record return fuel, " +
-      "propane, odometer, and generator readings. Additional charges follow page 1, " +
-      "including the " + usd(N.fee_late) + " late return fee if returned late.";
+    $("#dIntro").innerHTML = fill(TERMS.intro);
+    $("#dTerms").innerHTML = TERMS.sections.map(function (sec, i) {
+      return "<h3>" + (i + 1) + " &nbsp; " + sec.h + "</h3><p>" + fill(sec.body) + "</p>";
+    }).join("");
 
     var note = $("#aNotes").value.trim();
     $("#dNote").textContent = note ? "Note: " + note : "";

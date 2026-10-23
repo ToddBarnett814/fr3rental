@@ -538,6 +538,111 @@ collections:
             widget: text
             hint: "Leave a blank line between paragraphs."
             required: false
+      - name: agreement
+        label: "Rental agreement"
+        file: content/agreement.json
+        fields:
+          - name: ag_rule1
+            label: "Top of page - line 1"
+            widget: text
+            required: false
+          - name: ag_rule2
+            label: "Top of page - line 2"
+            widget: text
+            required: false
+          - name: ag_specs
+            label: "RV specs and amenities"
+            widget: text
+            required: false
+          - name: ag_insurance_note
+            label: "Insurance note"
+            widget: text
+            required: false
+          - name: ag_amenities
+            label: "Amenities for no charge"
+            widget: text
+            required: false
+          - name: ag_supplies
+            label: "Supplies"
+            widget: text
+            required: false
+          - name: ag_walkthrough
+            label: "Walkthrough instructions"
+            widget: text
+            required: false
+          - name: ag_intro
+            label: "Rental terms - opening line"
+            widget: text
+            hint: "Keep the bits in [square brackets] &mdash; they fill in with this trip's figures."
+            required: false
+          - name: ag_h1
+            label: "1 - heading"
+            widget: string
+            required: false
+          - name: ag_s1
+            label: "1 - text"
+            widget: text
+            hint: "Keep the bits in [square brackets] &mdash; they fill in with this trip's figures."
+            required: false
+          - name: ag_h2
+            label: "2 - heading"
+            widget: string
+            required: false
+          - name: ag_s2
+            label: "2 - text"
+            widget: text
+            hint: "Keep the bits in [square brackets] &mdash; they fill in with this trip's figures."
+            required: false
+          - name: ag_h3
+            label: "3 - heading"
+            widget: string
+            required: false
+          - name: ag_s3
+            label: "3 - text"
+            widget: text
+            required: false
+          - name: ag_h4
+            label: "4 - heading"
+            widget: string
+            required: false
+          - name: ag_s4
+            label: "4 - text"
+            widget: text
+            required: false
+          - name: ag_h5
+            label: "5 - heading"
+            widget: string
+            required: false
+          - name: ag_s5
+            label: "5 - text"
+            widget: text
+            hint: "Keep the bits in [square brackets] &mdash; they fill in with this trip's figures."
+            required: false
+          - name: ag_h6
+            label: "6 - heading"
+            widget: string
+            required: false
+          - name: ag_s6
+            label: "6 - text"
+            widget: text
+            required: false
+          - name: ag_h7
+            label: "7 - heading"
+            widget: string
+            required: false
+          - name: ag_s7
+            label: "7 - text"
+            widget: text
+            hint: "Keep the bits in [square brackets] &mdash; they fill in with this trip's figures."
+            required: false
+          - name: ag_h8
+            label: "8 - heading"
+            widget: string
+            required: false
+          - name: ag_s8
+            label: "8 - text"
+            widget: text
+            required: false
       - name: advanced
         label: "Advanced"
         file: content/advanced.json
