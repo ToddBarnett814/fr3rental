@@ -673,3 +673,5 @@ h4{font-size:1.1rem}
 .ag-spec p{font-size:.84rem;line-height:1.5;margin:0 0 7px}
 .ag-spec b{font-weight:700}
 .ag-small{font-size:.84rem;line-height:1.5}
+.ag-page1{margin:10px 0 4px}
+.ag-page1 p{font-size:.82rem;line-height:1.5;margin:0 0 7px;color:var(--ink)}

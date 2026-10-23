@@ -17,6 +17,23 @@
   var WORDS = ["zero","one","two","three","four","five","six","seven","eight","nine","ten",
                "eleven","twelve","thirteen","fourteen"];
   function spell(n) { return WORDS[n] || String(n); }
+  function cap(t) { return t.charAt(0).toUpperCase() + t.slice(1); }
+
+  /* his style: "November 24-28, 2026", or across months "November 28 - December 2, 2026" */
+  function range(a, b) {
+    if (!a || !b) return "the dates above";
+    var A = a.split("-"), B = b.split("-");
+    var da = new Date(+A[0], +A[1] - 1, +A[2]), db = new Date(+B[0], +B[1] - 1, +B[2]);
+    var mA = da.toLocaleDateString("en-US", { month: "long" });
+    var mB = db.toLocaleDateString("en-US", { month: "long" });
+    if (A[0] === B[0] && A[1] === B[1]) {
+      return mA + " " + da.getDate() + "\u2013" + db.getDate() + ", " + da.getFullYear();
+    }
+    if (A[0] === B[0]) {
+      return mA + " " + da.getDate() + "\u2013" + mB + " " + db.getDate() + ", " + da.getFullYear();
+    }
+    return mA + " " + da.getDate() + ", " + da.getFullYear() + "\u2013" + mB + " " + db.getDate() + ", " + db.getFullYear();
+  }
 
   function usd(n) {
     var d = n % 1 === 0 ? 0 : 2;
@@ -120,7 +137,7 @@
         (handoff && ret ? "The return date is before the handoff date."
                         : "Fill in the handoff and return dates above.") +
         "</td></tr>";
-      ["#dCharged", "#dNote", "#dIncl"].forEach(function (id) { $(id).textContent = ""; });
+      ["#dCharged", "#dNote", "#dIncl", "#dPeriod"].forEach(function (id) { $(id).textContent = ""; });
       $("#dReturnFees").innerHTML = "";
       return;
     }
@@ -146,8 +163,7 @@
         "   ·   RETURN: " + pretty(ret, $("#aReturnT").value)
       : "—";
     $("#dDates").textContent = dates;
-    $("#dDates2").textContent = handoff && ret
-      ? pretty(handoff) + " to " + pretty(ret) : "the dates above";
+    $("#dDates2").textContent = range(handoff, ret);
 
     $("#dCharged").textContent =
       overcharged
@@ -160,7 +176,12 @@
     $("#dCharged").style.color = overcharged ? "#b0562f" : "";
     $("#dCharged").style.fontWeight = overcharged ? "700" : "";
 
-    $("#dIncl").textContent = days + " rental day" + (days === 1 ? " includes " : "s include ") +
+    $("#dPeriod").textContent = handoff && ret
+      ? "Handoff is " + pretty(handoff) + "; return is " + pretty(ret) +
+        ", at the times entered on page 1."
+      : "";
+
+    $("#dIncl").textContent = cap(spell(days)) + " rental day" + (days === 1 ? " includes " : "s include ") +
       (days * miDay) + " miles and " + (days * genDay) + " generator hours." +
       (freeDays ? " The " + freeDays + " extra day" + (freeDays === 1 ? "" : "s") +
        " of possession carry no charge and no additional allowance." : "");
@@ -248,7 +269,7 @@
       "the " + usd(N.fee_dump) + " dump/flush fee applies. An additional " +
       usd(N.fee_excess_clean) + " excess cleaning fee applies if necessary. Pet fees cover " +
       "cleaning only; pet damage remains Renter\u2019s responsibility. Record return fuel, " +
-      "propane, odometer, and generator readings. Additional charges follow the table above, " +
+      "propane, odometer, and generator readings. Additional charges follow page 1, " +
       "including the " + usd(N.fee_late) + " late return fee if returned late.";
 
     var note = $("#aNotes").value.trim();
