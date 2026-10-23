@@ -68,7 +68,18 @@
   Object.keys(PARAMS).forEach(function (k) {
     if (q.get(k)) $(PARAMS[k]).value = q.get(k);
   });
-  if (q.get("h") && q.get("r")) $("#agSetup").style.display = "none";
+  var SETUP = ["#aHandoff", "#aHandoffT", "#aReturn", "#aReturnT",
+               "#aFrom", "#aTo", "#aRate", "#aGen", "#aMi", "#aNotes"];
+  var fromLink = !!(q.get("h") && q.get("r"));
+  if (fromLink) {
+    /* the renter never sees or touches these */
+    $("#agSetup").style.display = "none";
+    SETUP.forEach(function (sel) {
+      var el = $(sel);
+      if (el) { el.readOnly = true; el.disabled = true; }
+    });
+    $("#agAgreed").style.display = "block";
+  }
 
   /* charged dates default to the handoff dates */
   function syncCharged() {
@@ -85,6 +96,22 @@
 
   $("#aLink").addEventListener("click", function () {
     syncCharged();
+
+    var missing = [];
+    if (!$("#aHandoff").value) missing.push("handoff date");
+    if (!$("#aReturn").value) missing.push("return date");
+    if (!$("#aFrom").value || !$("#aTo").value) missing.push("the days you are charging for");
+    if (!parseFloat($("#aRate").value)) missing.push("daily rate");
+    if (dayCount($("#aHandoff").value, $("#aReturn").value) < 1) missing.push("a return date after the handoff date");
+    if (missing.length) {
+      var m0 = $("#aLinkMsg");
+      m0.textContent = "Fill in " + missing.join(", ") + " before sending the link.";
+      m0.style.color = "#b0562f";
+      m0.style.display = "block";
+      return;
+    }
+    $("#aLinkMsg").style.color = "";
+
     var u = location.origin + location.pathname +
             "?h=" + $("#aHandoff").value + "&ht=" + $("#aHandoffT").value +
             "&r=" + $("#aReturn").value + "&rt=" + $("#aReturnT").value +
@@ -263,6 +290,20 @@
     $("#dTerms").innerHTML = TERMS.sections.map(function (sec, i) {
       return "<h3>" + (i + 1) + " &nbsp; " + sec.h + "</h3><p>" + fill(sec.body) + "</p>";
     }).join("");
+
+    if (fromLink) {
+      var rows2 = [
+        ["Handoff", pretty(handoff, $("#aHandoffT").value)],
+        ["Return", pretty(ret, $("#aReturnT").value)],
+        ["Daily rate", usd(rate)],
+        ["Days charged", days + (freeDays ? " (" + freeDays + " more at no charge)" : "")],
+        ["Included each day", miDay + " miles, " + genDay + " generator hours"]
+      ];
+      if ($("#aNotes").value.trim()) rows2.push(["Note", $("#aNotes").value.trim()]);
+      $("#agAgreedTable").querySelector("tbody").innerHTML = rows2.map(function (r) {
+        return "<tr><td>" + r[0] + "</td><td class='n'></td><td class='a'>" + r[1] + "</td></tr>";
+      }).join("");
+    }
 
     var note = $("#aNotes").value.trim();
     $("#dNote").textContent = note ? "Note: " + note : "";

@@ -30,7 +30,7 @@
   <!-- ------------------------------------------------ owner setup -->
   <section class="panel no-print" id="agSetup">
     <h2 class="ag-h">Trip details</h2>
-    <p class="small muted">The owner fills this in. If he sent you a link, it is already done.</p>
+    <p class="small muted">The owner will complete this portion.</p>
     <div class="ag-grid">
       <div class="field"><label for="aHandoff">Handoff date</label><input type="date" id="aHandoff"></div>
       <div class="field"><label for="aHandoffT">Handoff time</label><input type="time" id="aHandoffT" value="07:00"></div>
@@ -56,6 +56,12 @@
     <button type="button" class="btn btn-ghost btn-sm" id="aLink">Copy link for the renter</button>
     <p class="small muted" id="aLinkMsg" style="display:none">Link copied. Send it to the renter.</p>
   </section>
+
+  <div class="panel no-print" id="agAgreed" style="display:none">
+    <h2 class="ag-h">Your trip</h2>
+    <p class="small muted">Set by the owner. If anything here is wrong, call him before you fill the rest in.</p>
+    <table class="ag-table" id="agAgreedTable"><tbody></tbody></table>
+  </div>
 
   <!-- ------------------------------------------------ renter form -->
   <form class="panel no-print" id="agForm" name="rental-agreement" method="POST"
